@@ -8,6 +8,11 @@ use App\Models\Topic;
 
 class TopicController extends Controller
 {
+    public function __construct(
+        private Topic $topic
+    ){
+    }
+
     /**
      * Display a listing of the resource.
      *
