@@ -69,3 +69,24 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## What is done
+
+### Authorization with laravel Breeze
+### Topic model, migration, Api/Web controller, factory
+
+### Api
+ * route to see all topics
+
+ ### Web
+ * route to see all topics
+
+ ### In progress
+ * view page to render all topics
+ * tests for render all topics in web
+
+_____
+
+## To do 
+ * docker file
+ * add new container to phpunit purpose
