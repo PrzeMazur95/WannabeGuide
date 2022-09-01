@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Topic;
 
 class TopicController extends Controller
 {
+    private $topic;
+
+    public function __construct(Topic $topic)
+    {
+        $this->topic = $topic;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,9 @@ class TopicController extends Controller
      */
     public function index()
     {
-        return view('Topic/AllTopics');
+        $allTopics = $this->topic::all();
+        
+        return view('Topic/AllTopics')->with('topics', $allTopics);
     }
 
     /**

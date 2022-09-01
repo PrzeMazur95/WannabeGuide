@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-    Route::get('/topics', [TopicController::class, 'index'])->name('topics.index');
+    Route::get('/topics', [TopicController::class, 'index'])->name('topics');
 });
 
 require __DIR__.'/auth.php';
