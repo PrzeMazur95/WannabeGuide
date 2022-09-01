@@ -3,9 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Topic;
 
 class TopicController extends Controller
 {
+    private $topic;
+
+    public function __construct(Topic $topic)
+    {
+        $this->topic = $topic;
+    }
+
     /**
      * Display a listing of the resource.
      *
