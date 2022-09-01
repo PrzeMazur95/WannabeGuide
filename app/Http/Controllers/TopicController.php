@@ -21,7 +21,9 @@ class TopicController extends Controller
      */
     public function index()
     {
-        return view('Topic/AllTopics');
+        $allTopics = $this->topic::all();
+        
+        return view('Topic/AllTopics')->with('topics', $allTopics);
     }
 
     /**
