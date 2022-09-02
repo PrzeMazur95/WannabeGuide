@@ -18,8 +18,9 @@ class TopicControllerTest extends TestCase
         $this->topic = new Topic;
         $this->authUser();
     }
+
     /**
-     * Test if we could render topics page properlyś
+     * Test if we could render topics page properly
      *
      * @return void
      * @test
@@ -36,5 +37,21 @@ class TopicControllerTest extends TestCase
         $response->assertStatus(200);
 
 
+    }
+
+    /**
+     * Test if we could render db data on topics page properly
+     *
+     * @return void
+     * @test
+     */
+    public function if_we_could_render_db_data_on_task_page()
+    {
+        $topic = $this->topic->factory()->create();
+        $AllTopics = $this->topic::all();
+
+        $view = $this->view('Topic/AllTopics', ['topics' => $AllTopics]);
+
+        $view->assertSee($topic->name);
     }
 }
