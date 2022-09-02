@@ -47,6 +47,11 @@ class TopicControllerTest extends TestCase
      */
     public function if_we_could_render_db_data_on_task_page()
     {
+        $topic = $this->topic->factory()->create();
+        $AllTopics = $this->topic::all();
 
+        $view = $this->view('Topic/AllTopics', ['topics' => $AllTopics]);
+
+        $view->assertSee($topic->name);
     }
 }
