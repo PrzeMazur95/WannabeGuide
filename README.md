@@ -83,7 +83,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  * view page to render all topics
 
  ### In progress
- * tests for render all topics in web, with db data
+
 
 _____
 
