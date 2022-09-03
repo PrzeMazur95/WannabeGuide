@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Topic;
+use App\Http\Requests\Topics\StoreRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class TopicController extends Controller
 {
@@ -23,28 +26,36 @@ class TopicController extends Controller
     {
         $allTopics = $this->topic::all();
         
-        return view('Topic/AllTopics')->with('topics', $allTopics);
+        return view('Topic/all_topics')->with('topics', $allTopics);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Topic.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('Topic/new_topic');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created topic in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  StoreRequest  $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request): RedirectResponse
     {
-        //
+        $topic=$this->topic;
+
+        $topic->name=$request->name;
+        $topic->description=$request->description;
+        $topic->category=1;
+        $topic->user_id=Auth::user()->id;
+        $topic->save();
+
+        return redirect()->route('topics.all');
     }
 
     /**

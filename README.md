@@ -83,10 +83,19 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  * view page to render all topics
 
  ### In progress
- * tests for render all topics in web, with db data
+ * route to add new topic
+ * created web route to store it
+    * need to do tests to it
+    * need to do api route to store them also
+    * need to validate if we have the same name in db
+    
+
 
 _____
 
 ## To do 
+ * CRUD for tasks
+ * categories, an relations between them and tasks
  * docker file
  * add new container to phpunit purpose
+
