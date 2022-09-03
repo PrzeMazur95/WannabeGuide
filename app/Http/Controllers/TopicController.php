@@ -23,17 +23,17 @@ class TopicController extends Controller
     {
         $allTopics = $this->topic::all();
         
-        return view('Topic/AllTopics')->with('topics', $allTopics);
+        return view('Topic/all_topics')->with('topics', $allTopics);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Topic.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        
     }
 
     /**
