@@ -83,6 +83,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  * view page to render all topics
 
  ### In progress
+ * route to add new topic
+ * created web route to store it
+    * need to do tests to it
+    * need to do api route to store them also
+    * need to validate if we have the same name in db
+    
 
 
 _____
