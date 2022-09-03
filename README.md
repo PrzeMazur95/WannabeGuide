@@ -88,5 +88,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 _____
 
 ## To do 
+ * CRUD for tasks
+ * categories, an relations between them and tasks
  * docker file
  * add new container to phpunit purpose
+
