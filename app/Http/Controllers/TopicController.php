@@ -54,6 +54,8 @@ class TopicController extends Controller
         $topic->category=1;
         $topic->user_id=Auth::user()->id;
         $topic->save();
+        
+        $request->session()->flash('Topic_added', 'Topic has been succesfully added!');
 
         return redirect()->route('topics.all');
     }
