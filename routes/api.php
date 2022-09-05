@@ -22,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(TopicController::class)->group(function () {
     //route to see all existing topics
     Route::get('topics', 'index');
+    //route to store new topic
+    Route::post('topics/store', 'store');
 });
