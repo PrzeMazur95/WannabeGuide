@@ -86,12 +86,14 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  * validation of required fields as topic and desciription, name has to be unique
  * if name exists in db, or it is some any other error, it will be show on page
  * show flash pop up, when new topic has been added
+ * form data stays when added topic has the same name which is an error
 
  ### In progress
  * new topic
     * need to do tests to it, if new topic exists, and pop-up is shown
     * need to do api route to store them also
     * need to validate if we have the same name in db in api routes
+    * set that api request shuld have accept json, and content type the same
 
     
 

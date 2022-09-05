@@ -14,10 +14,6 @@ use App\Http\Controllers\TopicController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::middleware('auth')->group(function(){
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     Route::get('/topics', [TopicController::class, 'index'])->name('topics.all');
