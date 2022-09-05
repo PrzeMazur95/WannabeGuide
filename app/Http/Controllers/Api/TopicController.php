@@ -46,7 +46,7 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response()->json("it works", 200);
     }
 
     /**
