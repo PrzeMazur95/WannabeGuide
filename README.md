@@ -86,6 +86,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  * validation of required fields as topic and desciription, name has to be unique
  * if name exists in db, or it is some any other error, it will be show on page
  * show flash pop up, when new topic has been added
+ * keep form data, if there was any error
 
  ### In progress
  * new topic
