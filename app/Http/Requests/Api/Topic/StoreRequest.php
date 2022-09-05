@@ -4,7 +4,7 @@ namespace App\Http\Requests\Api\Topic;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRequest.php extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
