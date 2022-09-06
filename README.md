@@ -74,9 +74,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ### Authorization with laravel Breeze
 ### Topic model, migration, Api/Web controller, factory
+### api and web routes are grouped by its controller
 
 ### Api
  * route to see all topics
+ * route to create new topic with request field validation
 
  ### Web
  * route to see all topics
@@ -90,10 +92,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
  ### In progress
  * new topic
-    * need to do tests to it, if new topic exists, and pop-up is shown
-    * need to do api route to store them also
+    * need to do tests to it, for web and for api, check if new topic exists, and pop-up is shown
+    * need to do api route to store them also - and test to it
     * need to validate if we have the same name in db in api routes
     * set that api request shuld have accept json, and content type the same
+    * all displayed tasks on all task grid are hrefs, create a form to show topic modal
 
     
 
@@ -105,4 +108,5 @@ _____
  * categories, an relations between them and tasks
  * docker file
  * add new container to phpunit purpose
+ * postman documentation
 
