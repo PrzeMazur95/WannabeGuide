@@ -15,10 +15,17 @@ use App\Http\Controllers\TopicController;
 */
 
 Route::middleware('auth')->group(function(){
+
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
-    Route::get('/topics', [TopicController::class, 'index'])->name('topics.all');
-    Route::get('/topics/create', [TopicController::class, 'create'])->name('topics.create');
-    Route::post('/topics/create', [TopicController::class, 'store'])->name('topics.store');
+
+    Route::controller(TopicController::class)->group(function () { 
+        //route to see all topics
+        Route::get('/topics','index')->name('topics.all');
+        //route to show form of creating new topic
+        Route::get('/topics/create', 'create')->name('topics.create');
+        //route to store new topic
+        Route::post('/topics/create', 'store')->name('topics.store');
+    });
 });
 
 require __DIR__.'/auth.php';
