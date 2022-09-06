@@ -10,14 +10,16 @@
         </div>
     @endif
     @foreach($topics as $topic)
-    <div class="py-2">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    {{$topic->name}}
+     <div class="py-2">
+        <a href="{{ url('topic/'.$topic->id) }}">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        {{$topic->name}}
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
     @endforeach
 </x-app-layout>
