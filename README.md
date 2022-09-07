@@ -97,6 +97,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
     * need to validate if we have the same name in db in api routes
     * set that api request shuld have accept json, and content type the same
     * all displayed tasks on all task grid are hrefs, create a form to show topic modal
+    * after click, modal page of specific post shuld be displayed
 
     
 
