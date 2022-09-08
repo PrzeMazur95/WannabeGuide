@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Topic;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Enum\Api\RestRequestValidation;
 
 class StoreRequest extends FormRequest
 {
@@ -27,6 +28,19 @@ class StoreRequest extends FormRequest
             'name' => ['required', 'string', 'unique:topics'],
             'description' => ['required', 'string'],
             'user_id' => ['required', 'int']
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => RestRequestValidation::NAME_IS_REQUIRED->value,
+            'name.string' => RestRequestValidation::NAME_FIELD_HAS_TO_BE_A_STRING->value,
+            'name.unique' => RestRequestValidation::NAME_FIELD_HAS_TO_BE_UNIQUE->value,
+            'description.required' => RestRequestValidation::DESCRIPTION_IS_REQUIRED->value,
+            'description.string' => RestRequestValidation::DESCRIPTION_HAS_TO_BE_A_STRING->value,
+            'user_id.required' => RestRequestValidation::USER_ID_IS_REQUIRED->value,
+            'user_id.int' => RestRequestValidation::USER_ID_HAS_TO_BE_AN_INT->value,
         ];
     }
 }
