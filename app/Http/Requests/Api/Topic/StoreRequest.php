@@ -31,7 +31,12 @@ class StoreRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /**
+     * Describes specific messages which are declared in RestRequestValidation enum file
+     * 
+     * @return array
+     */
+    public function messages(): array
     {
         return [
             'name.required' => RestRequestValidation::NAME_IS_REQUIRED->value,
