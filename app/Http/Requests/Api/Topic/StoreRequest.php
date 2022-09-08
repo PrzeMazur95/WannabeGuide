@@ -27,6 +27,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'unique:topics'],
             'description' => ['required', 'string'],
+            'category' => ['required', 'int'],
             'user_id' => ['required', 'int']
         ];
     }
@@ -46,6 +47,8 @@ class StoreRequest extends FormRequest
             'description.string' => RestRequestValidation::DESCRIPTION_HAS_TO_BE_A_STRING->value,
             'user_id.required' => RestRequestValidation::USER_ID_IS_REQUIRED->value,
             'user_id.int' => RestRequestValidation::USER_ID_HAS_TO_BE_AN_INT->value,
+            'category.required' => RestRequestValidation::CATEGORY_ID_IS_REQUIRED->value,
+            'category.int' => RestRequestValidation::CATEGORY_ID_HAS_TO_BE_AN_INT->value
         ];
     }
 }
