@@ -12,19 +12,6 @@ use App\Models\Topic;
 class TopicControllerTest extends TestCase
 {
     /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
-
-    }
-
-    /**
      * If api returns all topics
      *
      * @return void

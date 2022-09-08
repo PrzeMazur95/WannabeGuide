@@ -77,26 +77,33 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ### api and web routes are grouped by its controller
 
 ### Api
- * route to see all topics
- * route to create new topic with request field validation
+ * All topics
+    * route to see all topics
+* New topic
+    * route to create new topic with request field validation
+
+* Overall
+    * Rest responses, and any messages are stored as enums, so they will be the same allways.
 
  ### Web
- * route to see all topics
- * view page to render all topics
- * route to add new topic
- *  route to store new topic
- * validation of required fields as topic and desciription, name has to be unique
- * if name exists in db, or it is some any other error, it will be show on page
- * show flash pop up, when new topic has been added
- * form data stays when added topic has the same name which is an error
+ * All topics
+    * route to see all topics
+    * view page to render all topics
+ * New topic
+    * route to add new topic
+    * route to store new topic
+    * validation of required fields as topic and desciription, name has to be unique
+    * if name exists in db, or it is some any other error, it will be show on page
+    * show flash pop up, when new topic has been added
+    * form data stays when added topic has the same name which is an error
+
 
  ### In progress
  * new topic
     * need to do tests to it, for web and for api, check if new topic exists, and pop-up is shown
-    * need to do api route to store them also - and test to it
-    * need to validate if we have the same name in db in api routes
     * set that api request shuld have accept json, and content type the same
     * all displayed tasks on all task grid are hrefs, create a form to show topic modal
+    * after click, modal page of specific post shuld be displayed
 
     
 

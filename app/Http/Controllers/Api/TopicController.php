@@ -10,6 +10,7 @@ use App\Http\Requests\Api\Topic\StoreRequest;
 use App\Models\Topic;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use App\Enum\Api\RestResponses;
 
 class TopicController extends Controller
 {
@@ -47,7 +48,8 @@ class TopicController extends Controller
      */
     public function store(StoreRequest $request): JsonResponse
     {
-        return response()->json("it works", 200);
+        $this->topic->create($request->validated());
+        return response()->json(RestResponses::NEW_TOPIC_HAS_BEEN_ADDED, $this->responseCode::HTTP_CREATED);
     }
 
     /**

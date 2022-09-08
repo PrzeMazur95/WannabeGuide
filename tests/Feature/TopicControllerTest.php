@@ -50,7 +50,7 @@ class TopicControllerTest extends TestCase
         $topic = $this->topic->factory()->create();
         $AllTopics = $this->topic::all();
 
-        $view = $this->view('Topic/AllTopics', ['topics' => $AllTopics]);
+        $view = $this->view('Topic/all_topics', ['topics' => $AllTopics]);
 
         $view->assertSee($topic->name);
     }
