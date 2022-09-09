@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\Log;
 class TopicController extends Controller
 {
     private $topic;
+    private $logger;
 
-    public function __construct(Topic $topic)
+    public function __construct(Topic $topic, Log $logger)
     {
         $this->topic = $topic;
+        $this->logger = $logger;
     }
 
     /**
