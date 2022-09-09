@@ -11,6 +11,7 @@ use App\Models\Topic;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use App\Enum\Api\RestResponses;
+use Illuminate\Support\Facades\Log;
 
 class TopicController extends Controller
 {
