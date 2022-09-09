@@ -7,14 +7,16 @@ use App\Models\Topic;
 use App\Http\Requests\Topics\StoreRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 
 class TopicController extends Controller
 {
-    private $topic;
 
-    public function __construct(Topic $topic)
-    {
-        $this->topic = $topic;
+    public function __construct(
+        private Topic $topic,
+        private Log $logger,
+        private Auth $auth
+    ){
     }
 
     /**
@@ -52,7 +54,7 @@ class TopicController extends Controller
         $topic->name=$request->name;
         $topic->description=$request->description;
         $topic->category=1;
-        $topic->user_id=Auth::user()->id;
+        $topic->user_id=$this->auth::user()->id;
         $topic->save();
         
         $request->session()->flash('Topic_added', 'Topic has been succesfully added!');
