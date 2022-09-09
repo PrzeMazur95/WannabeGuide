@@ -17,7 +17,8 @@ class TopicController extends Controller
 {
     public function __construct(
         private Topic $topic,
-        private Response $responseCode
+        private Response $responseCode,
+        private Log $logger
     ){
     }
 
