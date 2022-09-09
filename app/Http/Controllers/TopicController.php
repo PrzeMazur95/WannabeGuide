@@ -14,7 +14,8 @@ class TopicController extends Controller
 
     public function __construct(
         private Topic $topic,
-        private Log $logger
+        private Log $logger,
+        private Auth $auth
     ){
     }
 
@@ -53,7 +54,7 @@ class TopicController extends Controller
         $topic->name=$request->name;
         $topic->description=$request->description;
         $topic->category=1;
-        $topic->user_id=Auth::user()->id;
+        $topic->user_id=$this->auth::user()->id;
         $topic->save();
         
         $request->session()->flash('Topic_added', 'Topic has been succesfully added!');
