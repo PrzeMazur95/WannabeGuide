@@ -11,13 +11,11 @@ use Illuminate\Support\Facades\Log;
 
 class TopicController extends Controller
 {
-    private $topic;
-    private $logger;
 
-    public function __construct(Topic $topic, Log $logger)
-    {
-        $this->topic = $topic;
-        $this->logger = $logger;
+    public function __construct(
+        private Topic $topic,
+        private Log $logger
+    ){
     }
 
     /**
