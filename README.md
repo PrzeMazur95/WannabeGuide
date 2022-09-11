@@ -100,6 +100,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
  ### In progress
  * new topic
+    * added log info only in store api topic controller
     * need to do tests to it, for web and for api, check if new topic exists, and pop-up is shown
     * set that api request shuld have accept json, and content type the same
     * all displayed tasks on all task grid are hrefs, create a form to show topic modal
@@ -116,4 +117,6 @@ _____
  * docker file
  * add new container to phpunit purpose
  * postman documentation
+ * add log inforations in controllers - more specific log messages
+ * create prefixes to logger like -web, api, in enums, instead of two the same enum files for each one
 
