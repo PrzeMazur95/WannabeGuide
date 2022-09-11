@@ -11,6 +11,7 @@ use App\Models\Topic;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use App\Enum\Api\RestResponses;
+use App\Enum\Api\LoggerMessages;
 use Illuminate\Support\Facades\Log;
 
 class TopicController extends Controller
@@ -50,8 +51,20 @@ class TopicController extends Controller
      */
     public function store(StoreRequest $request): JsonResponse
     {
-        $this->topic->create($request->validated());
-        return response()->json(RestResponses::NEW_TOPIC_HAS_BEEN_ADDED, $this->responseCode::HTTP_CREATED);
+        try { 
+            
+            $this->topic->create($request->validated());
+        
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_NEW_TOPIC_ADD->value, ['error' => $e->getMessage()]);
+
+            return response()->json(RestResponses::ERROR_ADD_NEW_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
+            
+        }
+        
+        return response()->json(RestResponses::NEW_TOPIC_HAS_BEEN_ADDED, $this->responseCode::HTTP_CREATED);  
+        
     }
 
     /**
