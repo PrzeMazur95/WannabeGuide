@@ -6,5 +6,5 @@ namespace App\Enum\Api;
 
 enum LoggerMessages: string
 {
-    case ERROR_NEW_TOPIC_ADD = 'Something went wrong when adding new topic!';
+    case ERROR_NEW_TOPIC_ADD = 'Something went wrong when adding new topic through API!';
 }
