@@ -30,7 +30,18 @@ class TopicController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->topic::all(), $this->responseCode::HTTP_OK);
+        try {
+
+            $allTopics = $this->topic::all();
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_GET_ALL_POSTS->value, ['error' => $e->getMessage()]);
+
+            return response()->json(RestResponses::ERROR_GET_ALL_POSTS, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+
+        }
+        return response()->json($allTopics, $this->responseCode::HTTP_OK);
     }
 
     /**
