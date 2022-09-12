@@ -8,6 +8,7 @@ use App\Http\Requests\Topics\StoreRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use App\Enum\LoggerMessages;
 
 class TopicController extends Controller
 {
