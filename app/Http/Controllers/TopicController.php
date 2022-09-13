@@ -35,6 +35,8 @@ class TopicController extends Controller
   
         } catch (\Exception $e){
 
+            $this->logger::error(LoggerMessages::ERROR_GET_ALL_TOPICS->value, ['error' => $e->getMessage()]);
+
             return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
 
         }
