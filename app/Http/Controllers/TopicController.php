@@ -8,6 +8,9 @@ use App\Http\Requests\Topics\StoreRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use App\Enum\LoggerMessages;
+use App\Enum\ErrorMessages;
+use Illuminate\View\View;
 
 class TopicController extends Controller
 {
@@ -22,12 +25,21 @@ class TopicController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        $allTopics = $this->topic::all();
-        
+        try {
+
+            $allTopics = $this->topic::all();
+  
+        } catch (\Exception $e){
+
+            $this->logger::error(LoggerMessages::ERROR_GET_ALL_TOPICS->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
         return view('Topic/all_topics')->with('topics', $allTopics);
     }
 
