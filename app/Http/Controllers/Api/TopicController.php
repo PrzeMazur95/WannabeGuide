@@ -36,9 +36,9 @@ class TopicController extends Controller
 
         } catch (\Exception $e) {
 
-            $this->logger::error(LoggerMessages::ERROR_GET_ALL_POSTS->value, ['error' => $e->getMessage()]);
+            $this->logger::error(LoggerMessages::ERROR_GET_ALL_TOPICS->value, ['error' => $e->getMessage()]);
 
-            return response()->json(RestResponses::ERROR_GET_ALL_POSTS, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(RestResponses::ERROR_GET_ALL_TOPICS, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
 
         }
         return response()->json($allTopics, $this->responseCode::HTTP_OK);
