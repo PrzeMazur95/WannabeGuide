@@ -54,4 +54,15 @@ class TopicControllerTest extends TestCase
 
         $view->assertSee($topic->name);
     }
+
+    /**
+     * Test if we could add new topic
+     *
+     * @return void
+     * @test
+     */
+    public function if_we_could_add_new_topic()
+    {
+
+    }
 }
