@@ -77,12 +77,12 @@ class TopicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Topic $topic
+     * @return View
      */
-    public function show($id)
+    public function show(Topic $topic): View
     {
-        //
+        dd($topic);
     }
 
     /**
