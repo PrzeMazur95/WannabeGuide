@@ -82,7 +82,7 @@ class TopicController extends Controller
      */
     public function show(Topic $topic): View
     {
-        dd($topic);
+        return view('Topic/topic', ['topic'=>$topic]);
     }
 
     /**
