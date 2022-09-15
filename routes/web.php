@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function(){
         Route::get('/topics/create', 'create')->name('topics.create');
         //route to store new topic
         Route::post('/topics/create', 'store')->name('topics.store');
+        //route to see specific topic
+        Route::get('/topics/{topic}', 'show')->name('topics.show');
     });
 });
 
