@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function(){
         Route::post('/topics/create', 'store')->name('topics.store');
         //route to see specific topic
         Route::get('/topics/{topic}', 'show')->name('topics.show');
+        //route to delete specific topic
+        Route::delete('/topics/{topic}', 'delete')->name('topics.delete');
     });
 });
 
