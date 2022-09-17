@@ -4,13 +4,13 @@
             List of all topics
         </h2>
     </x-slot>
-    @if(Session::has('Topic_added'))
+    @if(Session::has('TOPIC_ADDED'))
         <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-            <span class="font-medium">{{ Session::get('Topic_added')}}</span>
+            <span class="font-medium">{{ Session::get('TOPIC_ADDED')}}</span>
         </div>
-    @elseif(Session::has('Topic_deleted'))
+    @elseif(Session::has('TOPIC_DELETED'))
         <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-            <span class="font-medium">{{ Session::get('Topic_deleted')}}</span>
+            <span class="font-medium">{{ Session::get('TOPIC_DELETED')}}</span>
         </div>
     @endif
     @foreach($topics as $topic)
