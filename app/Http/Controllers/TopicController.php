@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use App\Enum\LoggerMessages;
 use App\Enum\ErrorMessages;
+use App\Enum\SessionMessages;
 use Illuminate\View\View;
 
 class TopicController extends Controller
@@ -69,7 +70,7 @@ class TopicController extends Controller
         $topic->user_id=$this->auth::user()->id;
         $topic->save();
         
-        $request->session()->flash('Topic_added', 'Topic has been succesfully added!');
+        $request->session()->flash(SessionMessages::TOPIC_ADDED->name, SessionMessages::TOPIC_ADDED->value);
 
         return redirect()->route('topics.all');
     }
@@ -119,7 +120,7 @@ class TopicController extends Controller
     {
         $topic->delete();
 
-        $request->session()->flash('Topic_deleted', 'Topic has been succesfully deleted!');
+        $request->session()->flash(SessionMessages::TOPIC_DELETED->name, SessionMessages::TOPIC_DELETED->value);
 
         return redirect()->route('topics.all');
 
