@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use App\Enum\LoggerMessages;
 use App\Enum\ErrorMessages;
+use App\Enum\SessionMessages;
 use Illuminate\View\View;
 
 class TopicController extends Controller
@@ -69,7 +70,7 @@ class TopicController extends Controller
         $topic->user_id=$this->auth::user()->id;
         $topic->save();
         
-        $request->session()->flash('Topic_added', 'Topic has been succesfully added!');
+        $request->session()->flash(SessionMessages::TOPIC_ADDED->name, SessionMessages::TOPIC_ADDED->value);
 
         return redirect()->route('topics.all');
     }
@@ -77,12 +78,12 @@ class TopicController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Topic $topic
+     * @return View
      */
-    public function show($id)
+    public function show(Topic $topic): View
     {
-        //
+        return view('Topic/topic', ['topic'=>$topic]);
     }
 
     /**
@@ -109,13 +110,19 @@ class TopicController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified topic from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Topic $topic
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Topic $topic, Request $request): RedirectResponse
     {
-        //
+        $topic->delete();
+
+        $request->session()->flash(SessionMessages::TOPIC_DELETED->name, SessionMessages::TOPIC_DELETED->value);
+
+        return redirect()->route('topics.all');
+
     }
 }
