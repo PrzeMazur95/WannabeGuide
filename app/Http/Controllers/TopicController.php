@@ -109,13 +109,19 @@ class TopicController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified topic from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Topic $topic
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Topic $topic, Request $request): RedirectResponse
     {
-        //
+        $topic->delete();
+
+        $request->session()->flash('Topic_deleted', 'Topic has been succesfully deleted!');
+
+        return redirect()->route('topics.all');
+
     }
 }
