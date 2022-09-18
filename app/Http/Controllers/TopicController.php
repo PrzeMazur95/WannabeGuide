@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Http\Requests\Topics\StoreRequest;
+use App\Http\Requests\Topics\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
@@ -87,26 +88,28 @@ class TopicController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified topic.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Topic $topic
+     * @return View
      */
-    public function edit($id)
+    public function edit(Topic $topic): View
     {
-        //
+        return view('Topic/edit_topic', ['topic' => $topic]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  UpdateRequest $request
+     * @param  Topic $topic
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Topic $topic)
     {
-        //
+        $topic->update($request->validated());
+
+        return redirect()->route('topics.all');
     }
 
     /**
