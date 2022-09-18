@@ -101,6 +101,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  ### In progress
  * new topic
     * added log info only in store api topic controller
+    * update update method in web controller, log, cache msg
     * grab all mathods in try catch block
     * need to do tests to it, for web and for api, check if new topic exists, and pop-up is shown
     * set that api request shuld have accept json, and content type the same
