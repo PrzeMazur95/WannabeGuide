@@ -19,6 +19,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
 
     Route::controller(TopicController::class)->group(function () { 
+         //route to save updated topic
+         Route::patch('/topics/{topic}/update', 'update')->name('topics.update');
         //route to see all topics
         Route::get('/topics','index')->name('topics.all');
         //route to show form of creating new topic
@@ -30,7 +32,7 @@ Route::middleware('auth')->group(function(){
         //route to delete specific topic
         Route::delete('/topics/{topic}', 'destroy')->name('topics.delete');
         //route to edit specific topic
-        Route::patch('topics/{topic}', 'edit')->name('topics.edit');
+        Route::patch('/topics/{topic}', 'edit')->name('topics.edit');
     });
 });
 
