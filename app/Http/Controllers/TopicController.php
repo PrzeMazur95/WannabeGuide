@@ -69,8 +69,19 @@ class TopicController extends Controller
         $topic->description=$request->description;
         $topic->category=1;
         $topic->user_id=$this->auth::user()->id;
-        $topic->save();
-        
+
+        try {
+
+            $topic->save();
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
+
         $request->session()->flash(SessionMessages::TOPIC_ADDED->name, SessionMessages::TOPIC_ADDED->value);
 
         return redirect()->route('topics.all');
