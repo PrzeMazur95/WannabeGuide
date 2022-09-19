@@ -8,4 +8,5 @@ enum LoggerMessages: string
 {
     case ERROR_NEW_TOPIC_ADD = 'Something went wrong when adding new topic in web!';
     case ERROR_GET_ALL_TOPICS = 'Something went wrong when trying to get all topics!';
+    case ERROR_SAVE_NEW_TOPIC = 'Something went wrong when trying to save new topc!';
 }
