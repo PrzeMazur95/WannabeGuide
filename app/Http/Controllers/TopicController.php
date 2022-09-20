@@ -116,10 +116,20 @@ class TopicController extends Controller
      * @param  Topic $topic
      * @return RedirectResponse
      */
-    public function update(UpdateRequest $request, Topic $topic)
+    public function update(UpdateRequest $request, Topic $topic): RedirectResponse
     {
-        $topic->update($request->validated());
+        try {
 
+            $topic->update($request->validated());
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_UPDATE_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
+        
         return redirect()->route('topics.all');
     }
 
