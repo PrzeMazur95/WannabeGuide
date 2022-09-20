@@ -101,12 +101,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  ### In progress
  * new topic
     * added log info only in store api topic controller
-    * update update method in web controller, log, cache msg
-    * grab all mathods in try catch block
+    * update update method in web controller, log, cache msg - done
+    * grab all mathods in try catch block - in web done, now api
     * need to do tests to it, for web and for api, check if new topic exists, and pop-up is shown
     * set that api request shuld have accept json, and content type the same
-    * all displayed tasks on all task grid are hrefs, create a form to show topic modal
-    * after click, modal page of specific post shuld be displayed
+    * all displayed tasks on all task grid are hrefs, create a form to show topic modal - done
+    * after click, modal page of specific post shuld be displayed - done
 
     
 
@@ -114,7 +114,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 _____
 
 ## To do 
- * CRUD for tasks
+ * CRUD for tasks - done in web - now api
  * categories, an relations between them and tasks
  * docker file
  * add new container to phpunit purpose
