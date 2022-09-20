@@ -129,6 +129,8 @@ class TopicController extends Controller
             return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
 
         }
+
+        $request->session()->flash(SessionMessages::TOPIC_UPDATED->name, SessionMessages::TOPIC_UPDATED->value);
         
         return redirect()->route('topics.all');
     }
