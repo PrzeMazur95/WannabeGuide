@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Http\Requests\Topics\StoreRequest;
+use App\Http\Requests\Topics\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
@@ -68,8 +69,19 @@ class TopicController extends Controller
         $topic->description=$request->description;
         $topic->category=1;
         $topic->user_id=$this->auth::user()->id;
-        $topic->save();
-        
+
+        try {
+
+            $topic->save();
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
+
         $request->session()->flash(SessionMessages::TOPIC_ADDED->name, SessionMessages::TOPIC_ADDED->value);
 
         return redirect()->route('topics.all');
@@ -87,26 +99,40 @@ class TopicController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified topic.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Topic $topic
+     * @return View
      */
-    public function edit($id)
+    public function edit(Topic $topic): View
     {
-        //
+        return view('Topic/edit_topic', ['topic' => $topic]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  UpdateRequest $request
+     * @param  Topic $topic
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Topic $topic): RedirectResponse
     {
-        //
+        try {
+
+            $topic->update($request->validated());
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_UPDATE_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
+
+        $request->session()->flash(SessionMessages::TOPIC_UPDATED->name, SessionMessages::TOPIC_UPDATED->value);
+        
+        return redirect()->route('topics.all');
     }
 
     /**
@@ -118,7 +144,18 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic, Request $request): RedirectResponse
     {
-        $topic->delete();
+        try {
+
+            $topic->delete();
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_DELETE_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
+        
 
         $request->session()->flash(SessionMessages::TOPIC_DELETED->name, SessionMessages::TOPIC_DELETED->value);
 
