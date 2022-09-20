@@ -144,7 +144,18 @@ class TopicController extends Controller
      */
     public function destroy(Topic $topic, Request $request): RedirectResponse
     {
-        $topic->delete();
+        try {
+
+            $topic->delete();
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_DELETE_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
+        
 
         $request->session()->flash(SessionMessages::TOPIC_DELETED->name, SessionMessages::TOPIC_DELETED->value);
 
