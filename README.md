@@ -116,6 +116,7 @@ _____
 ## To do 
  * CRUD for tasks - done in web - now api
  * categories, an relations between them and tasks
+ * create a middleware for api, to protect from unauthorized requests
  * docker file
  * add new container to phpunit purpose
  * postman documentation
