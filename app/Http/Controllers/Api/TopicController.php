@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\Topic\StoreRequest;
+use App\Http\Requests\Api\Topic\ShowRequest;
 use App\Models\Topic;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -57,7 +58,7 @@ class TopicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request $request
+     * @param  StoreRequest $request
      * @return JsonResponse
      */
     public function store(StoreRequest $request): JsonResponse
@@ -79,14 +80,14 @@ class TopicController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified topic.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  ShowRequest $request
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(ShowRequest $request): JsonResponse
     {
-        //
+        return response()->json("it works");
     }
 
     /**
