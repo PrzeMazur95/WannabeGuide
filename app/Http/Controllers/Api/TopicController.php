@@ -82,12 +82,23 @@ class TopicController extends Controller
     /**
      * Display the specified topic.
      *
-     * @param  ShowRequest $requestś
+     * @param  ShowRequest $request
      * @return JsonResponse
      */
     public function show(ShowRequest $request): JsonResponse
     {
-        return response()->json($this->topic::find($request->validated()));
+        try {
+
+            $topic = $this->topic::find($request->validated());
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_SHOW_SPECIFIC_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return response()->json(RestResponses::ERROR_GET_SPECIFIC_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
+        }
+
+        return response()->json($topic);
     }
 
     /**
