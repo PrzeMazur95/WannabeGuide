@@ -82,12 +82,12 @@ class TopicController extends Controller
     /**
      * Display the specified topic.
      *
-     * @param  ShowRequest $request
+     * @param  ShowRequest $requestś
      * @return JsonResponse
      */
     public function show(ShowRequest $request): JsonResponse
     {
-        return response()->json("it works");
+        return response()->json($this->topic::find($request->validated()));
     }
 
     /**
