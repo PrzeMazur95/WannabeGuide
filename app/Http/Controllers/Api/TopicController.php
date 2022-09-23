@@ -98,6 +98,11 @@ class TopicController extends Controller
             return response()->json(RestResponses::ERROR_GET_SPECIFIC_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
         }
 
+        if(!$topic->first()){
+
+            return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
+        }
+        
         return response()->json($topic);
     }
 
