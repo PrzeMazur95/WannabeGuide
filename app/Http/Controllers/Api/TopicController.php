@@ -42,6 +42,11 @@ class TopicController extends Controller
             return response()->json(RestResponses::ERROR_GET_ALL_TOPICS, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
 
         }
+        if(!$allTopics->all()){
+            
+            return response()->json(RestResponses::TOPICS_NOT_FOUND, $this->responseCode::HTTP_OK);
+        }
+
         return response()->json($allTopics, $this->responseCode::HTTP_OK);
     }
 
