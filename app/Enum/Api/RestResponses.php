@@ -13,4 +13,5 @@ enum RestResponses: string
     case ERROR_GET_SPECIFIC_TOPIC = 'Something went wrong when trying to see typed topic, please try one more time, or contact with admin';
 
     case TOPIC_NOT_FOUND = 'There is no topic with this id';
+    case TOPICS_NOT_FOUND = 'There are no topics available';
 }
