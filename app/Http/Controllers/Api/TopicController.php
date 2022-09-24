@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\Topic\StoreRequest;
 use App\Http\Requests\Api\Topic\ShowRequest;
+use App\Http\Requests\Api\Topic\UpdateRequest;
 use App\Models\Topic;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -125,13 +126,12 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  UpdateRequest $request
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request)
     {
-        //
+        return response()->json("it works", 200);
     }
 
     /**
