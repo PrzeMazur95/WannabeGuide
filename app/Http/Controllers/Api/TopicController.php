@@ -129,7 +129,7 @@ class TopicController extends Controller
      * @param  UpdateRequest $request
      * @return JsonResponse
      */
-    public function update(UpdateRequest $request)
+    public function update(UpdateRequest $request): JsonResponse
     {
         try {
 
