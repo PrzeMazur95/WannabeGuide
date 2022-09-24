@@ -26,4 +26,6 @@ Route::controller(TopicController::class)->group(function () {
     Route::post('topics/store', 'store');
     //route to show speific topic
     Route::get('topic', 'show');
+    //route to update specific topic
+    Route::post('topic/update', 'update');
 });
