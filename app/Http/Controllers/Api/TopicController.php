@@ -131,7 +131,25 @@ class TopicController extends Controller
      */
     public function update(UpdateRequest $request)
     {
-        return response()->json("it works", 200);
+        try {
+
+            $topic = $this->topic::find($request->topic_id);
+
+            if(!$topic){
+
+                return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
+            }
+            
+            $topic->update($request->validated());
+
+            return response()->json(RestResponses::TOPIC_HAS_BEEN_UPDATED, $this->responseCode::HTTP_OK);
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_UPDATE_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return response()->json(RestResponses::ERROR_UPDATE_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
