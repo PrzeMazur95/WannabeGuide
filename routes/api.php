@@ -28,4 +28,6 @@ Route::controller(TopicController::class)->group(function () {
     Route::get('topic', 'show');
     //route to update specific topic
     Route::patch('topic/update', 'update');
+    //route to delete specific topic
+    Route::delete('topic/delete', 'destroy');
 });
