@@ -79,8 +79,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ### Api
  * All topics
     * route to see all topics
-* New topic
-    * route to create new topic with request field validation
+    * view page to render all topics
+    * route to edit specific topic
+    * route to delete specific topic
+    * route to create new topic
+    * all requests has their own validation
 
 * Overall
     * Rest responses, and any messages are stored as enums, so they will be the same allways.
@@ -89,10 +92,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  * All topics
     * route to see all topics
     * view page to render all topics
- * New topic
+    * route to edit specific topic
+    * route to delete specific topic
     * route to add new topic
     * route to store new topic
-    * validation of required fields as topic and desciription, name has to be unique
+    * all routes has their own validation
     * if name exists in db, or it is some any other error, it will be show on page
     * show flash pop up, when new topic has been added
     * form data stays when added topic has the same name which is an error
@@ -115,6 +119,9 @@ _____
 
 ## To do 
  * CRUD for tasks - done in web - now api
+ * add option to add photos to specific topic
+ * refactor web and api controller - try catch block, to not be dry - some parent method
+ * check in api if user exisits, and if topic is his own
  * categories, an relations between them and tasks
  * create a middleware for api, to protect from unauthorized requests
  * docker file
