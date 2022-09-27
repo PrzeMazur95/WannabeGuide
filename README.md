@@ -92,10 +92,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  * All topics
     * route to see all topics
     * view page to render all topics
-    * route to edit specific topic
-    * route to delete specific topic
-    * route to add new topic
-    * route to store new topic
+    * crud for topics
     * all routes has their own validation
     * if name exists in db, or it is some any other error, it will be show on page
     * show flash pop up, when new topic has been added
