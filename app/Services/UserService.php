@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Enum\Api\LoggerMessages;
+use Illuminate\Support\Facades\Log;
 
 class UserService {
 
@@ -20,6 +22,9 @@ class UserService {
     
             return true;
         } catch(\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_GET_USER_FROM_DB->value, ['error' => $e->getMessage()]);
+
             return false;
         }
 
