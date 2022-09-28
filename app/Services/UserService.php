@@ -13,10 +13,15 @@ class UserService {
 
     public function checkIfExists(int $user_id)
     {
-        if(!$this->user::find($user_id)){
+        try{
+            if(!$this->user::find($user_id)){
+                return false;
+            } 
+    
+            return true;
+        } catch(\Exception $e) {
             return false;
-        } 
+        }
 
-        return true;
     }
 }
