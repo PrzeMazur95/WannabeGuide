@@ -8,12 +8,23 @@ use App\Models\Topic;
 
 class TopicService {
 
+    /**
+     *
+     * @param Topic $topic
+     * @param Log $logger
+     */
     public function __construct(
         private Topic $topic,
         private Log $logger
     ){
     }
 
+    /**
+     * Method to check is specified topic exists
+     *
+     * @param integer $topic_id
+     * @return void
+     */
     public function checkIfExists(int $topic_id)
     {
         try{
