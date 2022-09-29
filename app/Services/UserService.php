@@ -9,6 +9,12 @@ use App\Models\Topic;
 
 class UserService {
 
+    /**
+     *
+     * @param User $user
+     * @param Topic $topic
+     * @param Log $logger
+     */
     public function __construct(
         private User $user,
         private Topic $topic,
@@ -16,6 +22,12 @@ class UserService {
     ){
     }
 
+    /**
+     * Method to check if user exists in db
+     *
+     * @param User $user_id
+     * @return void
+     */
     public function checkIfExists(User $user_id)
     {
         try{
@@ -34,7 +46,7 @@ class UserService {
     }
 
     /**
-     * Undocumented function
+     * Method to check if typed user is an owner of specific topic
      *
      * @param int $user_id
      * @param int $topic
@@ -46,7 +58,7 @@ class UserService {
 
             return true;
         } else {
-            
+
             return false;
         }
     }
