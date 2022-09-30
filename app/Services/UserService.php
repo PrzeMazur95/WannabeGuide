@@ -28,7 +28,7 @@ class UserService {
      * @param User $user_id
      * @return void
      */
-    public function checkIfExists(User $user_id)
+    public function checkIfExists(int $user_id)
     {
         try{
             if(!$this->user::find($user_id)){
