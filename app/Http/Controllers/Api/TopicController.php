@@ -9,19 +9,24 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Api\Topic\StoreRequest;
 use App\Http\Requests\Api\Topic\ShowRequest;
 use App\Http\Requests\Api\Topic\UpdateRequest;
+use App\Http\Requests\Api\Topic\DeleteRequest;
 use App\Models\Topic;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use App\Enum\Api\RestResponses;
 use App\Enum\Api\LoggerMessages;
 use Illuminate\Support\Facades\Log;
+use App\Services\UserService;
+use App\Services\TopicService;
 
 class TopicController extends Controller
 {
     public function __construct(
         private Topic $topic,
         private Response $responseCode,
-        private Log $logger
+        private Log $logger,
+        private UserService $UserService,
+        private TopicService $TopicService
     ){
     }
 
@@ -153,13 +158,40 @@ class TopicController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified topic from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  DeleteRequest $request
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(DeleteRequest $request): JsonResponse
     {
-        //
+        if(!$this->UserService->checkIfExists($request->user_id)){
+
+            return response()->json(RestResponses::USER_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
+        }
+
+        if(!$this->TopicService->checkIfExists($request->id)){
+
+            return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
+        }
+
+        if(!$this->UserService->checkIfUserIsAnOwnerOfSpecificTopic($request->user_id, $request->id)){
+
+            return response()->json(RestResponses::USER_IS_NOT_AN_OWNER, $this->responseCode::HTTP_NOT_FOUND);            
+        }
+        
+        try {
+            
+            $this->topic::find($request->id)->first()->delete();
+
+            return response()->json(RestResponses::TOPIC_HAS_BEEN_DELETED, $this->responseCode::HTTP_NO_CONTENT);
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_DELETE_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return response()->json(RestResponses::ERROR_DELETE_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
+        }
+        
+
     }
 }
