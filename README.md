@@ -1,7 +1,7 @@
 ## Steps to run project 
 * Run in console below commands
     * docker-compose up -d
-    * npm install && npm watch dev
+    * npm install && npm watch dev && npm run
     * php artisan serve
 * Then go to 127.0.0.1:8000 to see home page
 
@@ -79,8 +79,11 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ### Api
  * All topics
     * route to see all topics
-* New topic
-    * route to create new topic with request field validation
+    * view page to render all topics
+    * route to edit specific topic
+    * route to delete specific topic
+    * route to create new topic
+    * all requests has their own validation
 
 * Overall
     * Rest responses, and any messages are stored as enums, so they will be the same allways.
@@ -89,10 +92,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  * All topics
     * route to see all topics
     * view page to render all topics
- * New topic
-    * route to add new topic
-    * route to store new topic
-    * validation of required fields as topic and desciription, name has to be unique
+    * crud for topics
+    * all routes has their own validation
     * if name exists in db, or it is some any other error, it will be show on page
     * show flash pop up, when new topic has been added
     * form data stays when added topic has the same name which is an error
@@ -101,12 +102,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
  ### In progress
  * new topic
     * added log info only in store api topic controller
-    * update update method in web controller, log, cache msg
-    * grab all mathods in try catch block
+    * update update method in web controller, log, cache msg - done
+    * grab all mathods in try catch block - in web done, now api
     * need to do tests to it, for web and for api, check if new topic exists, and pop-up is shown
     * set that api request shuld have accept json, and content type the same
-    * all displayed tasks on all task grid are hrefs, create a form to show topic modal
-    * after click, modal page of specific post shuld be displayed
+    * all displayed tasks on all task grid are hrefs, create a form to show topic modal - done
+    * after click, modal page of specific post shuld be displayed - done
 
     
 
@@ -114,8 +115,12 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 _____
 
 ## To do 
- * CRUD for tasks
+ * CRUD for tasks - done in web - now api
+ * add option to add photos to specific topic
+ * refactor web and api controller - try catch block, to not be dry - some parent method
+ * check in api if user exisits, and if topic is his own
  * categories, an relations between them and tasks
+ * create a middleware for api, to protect from unauthorized requests
  * docker file
  * add new container to phpunit purpose
  * postman documentation

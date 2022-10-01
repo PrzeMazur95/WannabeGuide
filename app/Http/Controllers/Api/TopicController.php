@@ -7,19 +7,35 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\Api\Topic\StoreRequest;
+use App\Http\Requests\Api\Topic\ShowRequest;
+use App\Http\Requests\Api\Topic\UpdateRequest;
+use App\Http\Requests\Api\Topic\DeleteRequest;
 use App\Models\Topic;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use App\Enum\Api\RestResponses;
 use App\Enum\Api\LoggerMessages;
 use Illuminate\Support\Facades\Log;
+use App\Services\UserService;
+use App\Services\TopicService;
 
 class TopicController extends Controller
 {
+    /**
+     * TopicController class constructor
+     * 
+     * @param Topic        $topic
+     * @param Response     $responseCode
+     * @param Log          $logger
+     * @param UserService  $UserService
+     * @param TopicService $TopicService
+     */
     public function __construct(
         private Topic $topic,
         private Response $responseCode,
-        private Log $logger
+        private Log $logger,
+        private UserService $UserService,
+        private TopicService $TopicService
     ){
     }
 
@@ -41,6 +57,11 @@ class TopicController extends Controller
             return response()->json(RestResponses::ERROR_GET_ALL_TOPICS, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
 
         }
+        if(!$allTopics->all()) {
+            
+            return response()->json(RestResponses::TOPICS_NOT_FOUND, $this->responseCode::HTTP_OK);
+        }
+
         return response()->json($allTopics, $this->responseCode::HTTP_OK);
     }
 
@@ -57,7 +78,7 @@ class TopicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  Request $request
+     * @param  StoreRequest $request
      * @return JsonResponse
      */
     public function store(StoreRequest $request): JsonResponse
@@ -79,14 +100,30 @@ class TopicController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified topic.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  ShowRequest $request
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(ShowRequest $request): JsonResponse
     {
-        //
+        try {
+
+            $topic = $this->topic::find($request->validated());
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_SHOW_SPECIFIC_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return response()->json(RestResponses::ERROR_GET_SPECIFIC_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
+        }
+
+        if(!$topic->first()){
+
+            return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
+        }
+        
+        return response()->json($topic);
     }
 
     /**
@@ -103,23 +140,67 @@ class TopicController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  UpdateRequest $request
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request): JsonResponse
     {
-        //
+        try {
+
+            $topic = $this->topic::find($request->topic_id);
+
+            if(!$topic){
+
+                return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
+            }
+            
+            $topic->update($request->validated());
+
+            return response()->json(RestResponses::TOPIC_HAS_BEEN_UPDATED, $this->responseCode::HTTP_OK);
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_UPDATE_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return response()->json(RestResponses::ERROR_UPDATE_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
+        }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified topic from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  DeleteRequest $request
+     * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(DeleteRequest $request): JsonResponse
     {
-        //
+        if(!$this->UserService->checkIfExists($request->user_id)){
+
+            return response()->json(RestResponses::USER_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
+        }
+
+        if(!$this->TopicService->checkIfExists($request->id)){
+
+            return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
+        }
+
+        if(!$this->UserService->checkIfUserIsAnOwnerOfSpecificTopic($request->user_id, $request->id)){
+
+            return response()->json(RestResponses::USER_IS_NOT_AN_OWNER, $this->responseCode::HTTP_NOT_FOUND);            
+        }
+        
+        try {
+            
+            $this->topic::find($request->id)->first()->delete();
+
+            return response()->json(RestResponses::TOPIC_HAS_BEEN_DELETED, $this->responseCode::HTTP_NO_CONTENT);
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_DELETE_TOPIC->value, ['error' => $e->getMessage()]);
+
+            return response()->json(RestResponses::ERROR_DELETE_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
+        }
+        
+
     }
 }

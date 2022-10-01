@@ -24,4 +24,10 @@ Route::controller(TopicController::class)->group(function () {
     Route::get('topics', 'index');
     //route to store new topic
     Route::post('topics/store', 'store');
+    //route to show speific topic
+    Route::get('topic', 'show');
+    //route to update specific topic
+    Route::patch('topic/update', 'update');
+    //route to delete specific topic
+    Route::delete('topic/delete', 'destroy');
 });
