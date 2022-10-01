@@ -1,7 +1,7 @@
 ## Steps to run project 
 * Run in console below commands
     * docker-compose up -d
-    * npm install && npm watch dev
+    * npm install && npm watch dev && npm run
     * php artisan serve
 * Then go to 127.0.0.1:8000 to see home page
 
