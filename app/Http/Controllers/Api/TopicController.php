@@ -21,6 +21,15 @@ use App\Services\TopicService;
 
 class TopicController extends Controller
 {
+    /**
+     * TopicController class constructor
+     * 
+     * @param Topic        $topic
+     * @param Response     $responseCode
+     * @param Log          $logger
+     * @param UserService  $UserService
+     * @param TopicService $TopicService
+     */
     public function __construct(
         private Topic $topic,
         private Response $responseCode,
@@ -48,7 +57,7 @@ class TopicController extends Controller
             return response()->json(RestResponses::ERROR_GET_ALL_TOPICS, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
 
         }
-        if(!$allTopics->all()){
+        if(!$allTopics->all()) {
             
             return response()->json(RestResponses::TOPICS_NOT_FOUND, $this->responseCode::HTTP_OK);
         }
