@@ -101,13 +101,15 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
  ### In progress
  * new topic
-    * added log info only in store api topic controller
+    * added log info only in store api topic controller - done
     * update update method in web controller, log, cache msg - done
-    * grab all mathods in try catch block - in web done, now api
+    * grab all mathods in try catch block - in web done, now api - done
     * need to do tests to it, for web and for api, check if new topic exists, and pop-up is shown
     * set that api request shuld have accept json, and content type the same
     * all displayed tasks on all task grid are hrefs, create a form to show topic modal - done
     * after click, modal page of specific post shuld be displayed - done
+
+* category model
 
     
 
