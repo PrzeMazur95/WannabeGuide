@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Topic;
+use App\Models\Category;
 use App\Http\Requests\Topics\StoreRequest;
 use App\Http\Requests\Topics\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
@@ -19,9 +20,10 @@ class TopicController extends Controller
 
     public function __construct(
         private Topic $topic,
+        private Category $categories,
         private Log $logger,
         private Auth $auth
-    ){
+    ) {
     }
 
     /**
@@ -46,13 +48,14 @@ class TopicController extends Controller
     }
 
     /**
-     * Show the form for creating a new Topic.
+     * Displays form to add a new topic
      *
-     * @return \Illuminate\Http\Response
+     * @param Category $categories
+     * @return View
      */
-    public function create()
+    public function create(Category $categories): View
     {
-        return view('Topic/new_topic');
+        return view('Topic/new_topic', ['categories' => $categories->all()]);
     }
 
     /**
