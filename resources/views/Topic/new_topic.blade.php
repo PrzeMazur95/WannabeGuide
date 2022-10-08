@@ -33,7 +33,7 @@
                             <option value="FR">France</option>
                             <option value="DE">Germany</option>
                         </select>
-                    <x-button class="ml-3 p-6">
+                    <x-button class="mt-5">
                     {{ __('Submit') }}
                     </x-button>
                 </form>
