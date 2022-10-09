@@ -129,4 +129,6 @@ _____
  * add log inforations in controllers - more specific log messages
  * create prefixes to logger like -web, api, in enums, instead of two the same enum files for each one
  * add dusk test cases for act like a user
+ * add user factory, to have an admin on the begginign
+ * edit update topic, add there choose new category
 
