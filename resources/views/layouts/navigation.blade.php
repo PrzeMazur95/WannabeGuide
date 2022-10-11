@@ -26,6 +26,11 @@
                         {{ __('Add new!') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('topics.create')" :active="request()->routeIs('topics.create')">
+                        {{ __('Add category') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
