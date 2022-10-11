@@ -34,6 +34,11 @@ Route::middleware('auth')->group(function(){
         //route to edit specific topic
         Route::patch('/topics/{topic}', 'edit')->name('topics.edit');
     });
+    Route::controller(CategoryController::class)->group(
+        function () {
+            Route::get('/category/create', 'create')->name('category.create');
+        }
+    );
 });
 
 require __DIR__.'/auth.php';
