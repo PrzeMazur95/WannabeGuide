@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use App\Http\Requests\Category\StoreRequest;
 
 class CategoryController extends Controller
@@ -18,13 +19,13 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new category.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('Category/new_category');
     }
 
     /**
