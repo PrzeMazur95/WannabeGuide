@@ -39,7 +39,10 @@ Route::middleware('auth')->group( function () {
     );
     Route::controller(CategoryController::class)->group(
         function () {
+            //route to show form of creating new category
             Route::get('/category/create', 'create')->name('category.create');
+            //route to store new category
+            Route::post('/category/create', 'store')->name('category.store');
         }
     );
 });
