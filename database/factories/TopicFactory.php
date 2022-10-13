@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\User;
+use App\Models\Category;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Topic>
@@ -20,9 +21,10 @@ class TopicFactory extends Factory
         return [
             'name' => fake()->sentence,
             'description' => fake()->text,
-            'status' => rand(0,2),
-            'category' => fake()->word,
-            'user_id'=>function(){
+            'category' => function () {
+                return Category::factory()->create()->id;
+            },
+            'user_id' => function () {
                 return User::factory()->create()->id;
             }
         ];
