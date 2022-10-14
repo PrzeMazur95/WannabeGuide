@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Requests\Category\StoreRequest;
 
 class CategoryController extends Controller
 {
+    /**
+     * Undocumented function
+     * 
+     * @param Category $category
+     */
+    public function __construct(
+        private Category $category
+    ) {
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +47,7 @@ class CategoryController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        //
+        dd($request->validated());
     }
 
     /**
