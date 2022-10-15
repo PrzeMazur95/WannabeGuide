@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Http\Requests\Category\StoreRequest;
 
 class CategoryController extends Controller
 {
     /**
-     * Undocumented function
+     * Construct for DI
      * 
      * @param Category $category
      */
@@ -18,7 +19,7 @@ class CategoryController extends Controller
         private Category $category
     ) {
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -43,11 +44,12 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): RedirectResponse
     {
-        dd($request->validated());
+        $this->category->create($request->validated());
+        return redirect()->route('categories.all');
     }
 
     /**
