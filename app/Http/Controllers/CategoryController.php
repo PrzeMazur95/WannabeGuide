@@ -9,6 +9,7 @@ use Illuminate\View\View;
 use App\Http\Requests\Category\StoreRequest;
 use App\Enum\SessionMessages;
 use App\Enum\ErrorMessages;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -18,7 +19,8 @@ class CategoryController extends Controller
      * @param Category $category
      */
     public function __construct(
-        private Category $category
+        private Category $category,
+        private Log $logger
     ) {
     }
 
