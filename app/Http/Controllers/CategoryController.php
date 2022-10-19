@@ -41,15 +41,21 @@ class CategoryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created category in storage.
      *
      * @param  StoreRequest  $request
      * @return RedirectResponse
      */
     public function store(StoreRequest $request): RedirectResponse
     {
-        $this->category->create($request->validated());
-        return redirect()->route('categories.all');
+        try{
+            $this->category->create($request->validated());
+
+            return redirect()->route('category.all');
+        }catch (\Exception $e){
+            return back()->with('wrong', $e->getmessage());
+        }
+
     }
 
     /**
