@@ -43,6 +43,8 @@ Route::middleware('auth')->group( function () {
             Route::get('/category/create', 'create')->name('category.create');
             //route to store new category
             Route::post('/category/create', 'store')->name('category.store');
+            //route to see all categories
+            Route::get('/category', 'index')->name('category.all');
         }
     );
 });
