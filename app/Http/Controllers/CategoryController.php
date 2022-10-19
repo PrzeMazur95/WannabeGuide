@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Http\Requests\Category\StoreRequest;
+use App\Enum\SessionMessages;
+use App\Enum\ErrorMessages;
 
 class CategoryController extends Controller
 {
@@ -51,10 +53,11 @@ class CategoryController extends Controller
         try{
             $this->category->create($request->validated());
 
-            return redirect()->route('category.all');
         }catch (\Exception $e){
-            return back()->with('wrong', $e->getmessage());
+            return back()->with('db_error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB->value);
         }
+
+        return redirect()->route('category.all')->with(SessionMessages::CATEGORY_ADDED->name, SessionMessages::CATEGORY_ADDED->value);
 
     }
 
