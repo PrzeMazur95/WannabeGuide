@@ -9,6 +9,7 @@ use Illuminate\View\View;
 use App\Http\Requests\Category\StoreRequest;
 use App\Enum\SessionMessages;
 use App\Enum\ErrorMessages;
+use App\Enum\LoggerMessages;
 use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
