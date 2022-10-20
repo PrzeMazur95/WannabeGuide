@@ -11,4 +11,6 @@ enum LoggerMessages: string
     case ERROR_SAVE_NEW_TOPIC = 'Something went wrong when trying to save new topc!';
     case ERROR_UPDATE_TOPIC = 'Something went wrong when trying to update this topic!';
     case ERROR_DELETE_TOPIC = 'Something went wrong when trying to delete this topic!';
+
+    case ERROR_SAVE_NEW_CATEGORY = 'Something went wrong when trying to save new category!';
 }
