@@ -56,6 +56,9 @@ class CategoryController extends Controller
             $this->category->create($request->validated());
 
         }catch (\Exception $e){
+
+            $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_CATEGORY->value, ['error' => $e->getMessage()]);
+
             return back()->with('db_error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB->value);
         }
 
