@@ -13,4 +13,13 @@ class Category extends Model
         'name',
         'user_id'
     ];
+
+    /**
+     * Returns all topics belongs to specific category
+     *
+     */
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
 }
