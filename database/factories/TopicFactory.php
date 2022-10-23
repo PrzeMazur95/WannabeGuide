@@ -21,7 +21,7 @@ class TopicFactory extends Factory
         return [
             'name' => fake()->sentence,
             'description' => fake()->text,
-            'category' => function () {
+            'category_id' => function () {
                 return Category::factory()->create()->id;
             },
             'user_id' => function () {
