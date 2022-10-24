@@ -57,9 +57,9 @@ class User extends Authenticatable
     /**
      * Relation between user and topic model
      *
-     * @return void
+     * @return HasMany
      */
-    public function topics()
+    public function topics(): HasMany
     {
         return $this->hasMany(Topic::class);
     }
