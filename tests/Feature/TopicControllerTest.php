@@ -63,6 +63,11 @@ class TopicControllerTest extends TestCase
      */
     public function if_we_could_add_new_topic()
     {
+        $topic = $this->topic->factory()->create();
+        $topic->save();
 
+        $findTopic = Topic::find($topic->id);
+
+        $this->assertEquals($topic->name, $findTopic->name);
     }
 }
