@@ -9,6 +9,20 @@ use App\Models\Category;
 
 class CategoryControllerTest extends TestCase
 {
+    private $category;
+
+    /**
+     * Set category model as a dependency injection
+     *
+     * @return void
+     */
+    public function setUp(): void 
+    {
+        parent::setUp();
+
+        $this->category = new Category;
+    }
+
     /**
      * A basic feature test example.
      *
