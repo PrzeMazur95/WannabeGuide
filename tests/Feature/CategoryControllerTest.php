@@ -21,17 +21,20 @@ class CategoryControllerTest extends TestCase
         parent::setUp();
 
         $this->category = new Category;
+        $this->authUser();
     }
 
     /**
-     * A basic feature test example.
+     * Test if we could render category page properly.
      *
      * @return void
+     * @test
      */
-    public function test_example()
+    public function if_we_could_render_all_categories_page()
     {
-        $response = $this->get('/');
+        $response = $this->get('/category');
 
+        $response->assertViewIs('Category.all_categories');
         $response->assertStatus(200);
     }
 }
