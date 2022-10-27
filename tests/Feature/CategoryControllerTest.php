@@ -58,10 +58,17 @@ class CategoryControllerTest extends TestCase
     /**
      * Test if we could add new category
      *
+     * @test
      * @return void
      */
     public function if_we_could_add_new_category()
     {
+        $new_category = $this->category::factory()->create();
+        $new_category->save();
+        
+        $db_category = $this->category::find($new_category->id);
+        // dd($db_category->name);
 
+        $this->assertEquals($new_category->name, $db_category->name);
     }
 }
