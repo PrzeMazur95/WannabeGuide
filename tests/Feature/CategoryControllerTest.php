@@ -54,4 +54,14 @@ class CategoryControllerTest extends TestCase
         $view->assertSee($categories[1]->name);
 
     }
+
+    /**
+     * Test if we could add new category
+     *
+     * @return void
+     */
+    public function if_we_could_add_new_category()
+    {
+
+    }
 }
