@@ -62,15 +62,15 @@ class TopicController extends Controller
      * Store a newly created topic in storage.
      *
      * @param  StoreRequest  $request
-     * @return RedirectResponse
+     * 
      */
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(StoreRequest $request)
     {
         $topic=$this->topic;
 
         $topic->name=$request->name;
         $topic->description=$request->description;
-        $topic->category=1;
+        $topic->category_id=$request->category_id;
         $topic->user_id=$this->auth::user()->id;
 
         try {
