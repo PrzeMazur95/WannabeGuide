@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Category;
+use App\Models\Topic;
 
 class CategoryControllerTest extends TestCase
 {
@@ -70,5 +71,23 @@ class CategoryControllerTest extends TestCase
         // dd($db_category->name);
 
         $this->assertEquals($new_category->name, $db_category->name);
+    }
+
+
+    /**
+     * Test if user could see topis belongs to a category
+     * 
+     * @test
+     * @return void
+     */
+    public function if_we_could_render_topics_belongs_to_a_category()
+    {
+        $new_category = $this->category::factory()
+            ->has(Topic::factory()->count(3))
+            ->create();
+
+        $view = $this->view('Category/category', ['category'=>$new_category]);
+
+        $view->assertSee($new_category->topics[1]->name);
     }
 }
