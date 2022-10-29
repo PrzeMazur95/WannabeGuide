@@ -68,14 +68,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display all topicd belongs to specific category.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function show($id)
+    public function show(Category $category): View
     {
-        //
+        return view('Category/category', ['category'=>$category]);
     }
 
     /**
