@@ -45,6 +45,8 @@ Route::middleware('auth')->group( function () {
             Route::post('/category/create', 'store')->name('category.store');
             //route to see all categories
             Route::get('/category', 'index')->name('category.all');
+            //route to show all topis belongs to category
+            Route::get('/category/{category}', 'show')->name('category.show');
         }
     );
 });

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->foreignId('category')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->longtext('description');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

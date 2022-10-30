@@ -32,9 +32,8 @@ class TopicControllerTest extends TestCase
             0 => [
                 "id",
                 "name",
-                "category",
+                "category_id",
                 "description",
-                "status",
                 "user_id",
             ]
         ]);

@@ -20,26 +20,6 @@ class TopicControllerTest extends TestCase
     }
 
     /**
-     * Test if we could render topics page properly
-     *
-     * @return void
-     * @test
-     */
-    public function if_we_could_render_topics_page_properly()
-    {
-        // $topic = $this->topic->factory()->create();
-        // $AllTopics = $this->topic::all();
-        // $view = $this->view('Topic/AllTopics', ['topics' => $AllTopics]);
-        // $view->assertSee('sampleTopic');
-
-        $response = $this->get('/topics');
-
-        $response->assertStatus(200);
-
-
-    }
-
-    /**
      * Test if we could render db data on topics page properly
      *
      * @return void
@@ -63,6 +43,11 @@ class TopicControllerTest extends TestCase
      */
     public function if_we_could_add_new_topic()
     {
+        $topic = $this->topic->factory()->create();
+        $topic->save();
 
+        $findTopic = Topic::find($topic->id);
+
+        $this->assertEquals($topic->name, $findTopic->name);
     }
 }

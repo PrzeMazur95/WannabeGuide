@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\Category;
+use App\Models\Topic;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -45,10 +47,20 @@ class User extends Authenticatable
     /**
      * Relation between user and category model
      *
-     * @return void
+     * @return HasMany
      */
-    public function categories()
+    public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
+    }
+
+    /**
+     * Relation between user and topic model
+     *
+     * @return HasMany
+     */
+    public function topics(): HasMany
+    {
+        return $this->hasMany(Topic::class);
     }
 }
