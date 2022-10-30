@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            List of all topics belongs to this category : 
-            <h3> {{$category->name}}</h3>
+            List of all topics belongs to this category : {{$category->name}}
+            <h3> {{$category->topics->count()}} topics</h3>
         </h2>
     </x-slot>
     @forelse($category->topics as $topic)
