@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             List of all categories
         </h2>
+        <h3>We have: {{$categories->count()}}</h3>
     </x-slot>
     @if(Session::has('CATEGORY_ADDED'))
         <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
