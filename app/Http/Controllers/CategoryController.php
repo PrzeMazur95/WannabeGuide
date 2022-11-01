@@ -79,14 +79,14 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified category.
      *
      * @param  Category $category
      * @return View
      */
     public function edit(Category $category): View
     {
-        dd($category);
+        return view('Category/edit_category', ['category'=>$category]);
     }
 
     /**
