@@ -81,12 +81,12 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Category $category
+     * @return View
      */
-    public function edit($id)
+    public function edit(Category $category): View
     {
-        //
+        dd($category);
     }
 
     /**
