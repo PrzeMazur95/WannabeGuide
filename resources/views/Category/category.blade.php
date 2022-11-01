@@ -12,6 +12,13 @@
                     {{ __('Edit') }}
                 </x-button>
             </form>
+            <form class="inline-flex" method="POST" action="">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <x-button class="ml-3">
+                    {{ __('Delete') }}
+                </x-button>
+            </form>
         </div>
     </x-slot>
     @forelse($category->topics as $topic)
