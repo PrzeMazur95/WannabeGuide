@@ -47,6 +47,8 @@ Route::middleware('auth')->group( function () {
             Route::get('/category', 'index')->name('category.all');
             //route to show all topis belongs to category
             Route::get('/category/{category}', 'show')->name('category.show');
+            //route to edit specific category
+            Route::patch('/category/{category}', 'edit')->name('category.edit');
         }
     );
 });
