@@ -49,6 +49,8 @@ Route::middleware('auth')->group( function () {
             Route::get('/category/{category}', 'show')->name('category.show');
             //route to edit specific category
             Route::patch('/category/{category}', 'edit')->name('category.edit');
+            //route to save updated category
+            Route::patch('/category/{category}/update', 'update')->name('category.update');
         }
     );
 });
