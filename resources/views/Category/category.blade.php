@@ -1,8 +1,25 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            List of all topics belongs to this category
-        </h2>
+        <div class="py-2 text-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                List of all topics belongs to this category : {{$category->name}}
+                <h3> {{$category->topics->count()}} topics</h3>
+            </h2>
+            <form class="inline-flex" method="POST" action="">
+                <input type="hidden" name="_method" value="PATCH">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <x-button_white class="ml-3">
+                    {{ __('Edit') }}
+                </x-button>
+            </form>
+            <form class="inline-flex" method="POST" action="">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <x-button class="ml-3">
+                    {{ __('Delete') }}
+                </x-button>
+            </form>
+        </div>
     </x-slot>
     @forelse($category->topics as $topic)
      <div class="py-2">

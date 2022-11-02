@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Http\Requests\Category\StoreRequest;
+use App\Http\Requests\Category\UpdateRequest;
 use App\Enum\SessionMessages;
 use App\Enum\ErrorMessages;
 use App\Enum\LoggerMessages;
@@ -79,26 +80,26 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified category.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Category $category
+     * @return View
      */
-    public function edit($id)
+    public function edit(Category $category): View
     {
-        //
+        return view('Category/edit_category', ['category'=>$category]);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified category in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  UpdateRequest  $request
+     * @param  Category  $category
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, Category $category): RedirectResponse
     {
-        //
+        dd($request->validated());
     }
 
     /**
