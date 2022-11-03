@@ -99,7 +99,11 @@ class CategoryController extends Controller
      */
     public function update(UpdateRequest $request, Category $category): RedirectResponse
     {
-        dd($request->validated());
+        // dd($request->validated());
+        // dd($category);
+        $category->update($request->validated());
+
+        return redirect()->route('category.all');
     }
 
     /**
