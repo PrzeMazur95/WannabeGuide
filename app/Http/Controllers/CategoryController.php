@@ -99,11 +99,22 @@ class CategoryController extends Controller
      */
     public function update(UpdateRequest $request, Category $category): RedirectResponse
     {
-        // dd($request->validated());
-        // dd($category);
-        $category->update($request->validated());
+        try {
+
+            $category->update($request->validated());
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_UPDATE_CATEGORY->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
+
+        $request->session()->flash(SessionMessages::CATEGORY_UPDATED->name, SessionMessages::CATEGORY_UPDATED->value);
 
         return redirect()->route('category.all');
+        
     }
 
     /**
