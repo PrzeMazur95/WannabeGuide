@@ -11,4 +11,5 @@ enum SessionMessages: string
     case TOPIC_UPDATED = 'Topic has been succesfully updated !';
 
     case CATEGORY_ADDED = 'Category has been succesfully added!';
+    case CATEGORY_UPDATED = 'Category has been succesfully updated !';
 }
