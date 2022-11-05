@@ -121,15 +121,23 @@ class CategoryController extends Controller
      * Remove the specified category from storage.
      *
      * @param  Category  $category
+     * @param Request $request
      * @return RedirectResponse
      */
-    public function destroy(Category $category): RedirectResponse
+    public function destroy(Category $category, Request $request): RedirectResponse
     {
         try{
             $category->delete();
-            return redirect()->route('category.all');
-        }catch(\Exception $e){
-            dd($e);
+
+        } catch (\Exception $e) {
+            
+            $this->logger::error(LoggerMessages::ERROR_DELETE_CATEGORY->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
         }
+
+        $request->session()->flash(SessionMessages::CATEGORY_DELETED->name, SessionMessages::CATEGORY_DELETED->value);
+
+        return redirect()->route('category.all');
     }
 }
