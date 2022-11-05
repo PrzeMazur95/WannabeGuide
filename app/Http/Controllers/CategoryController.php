@@ -99,17 +99,45 @@ class CategoryController extends Controller
      */
     public function update(UpdateRequest $request, Category $category): RedirectResponse
     {
-        dd($request->validated());
+        try {
+
+            $category->update($request->validated());
+
+        } catch (\Exception $e) {
+
+            $this->logger::error(LoggerMessages::ERROR_UPDATE_CATEGORY->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+
+        }
+
+        $request->session()->flash(SessionMessages::CATEGORY_UPDATED->name, SessionMessages::CATEGORY_UPDATED->value);
+
+        return redirect()->route('category.all');
+        
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Category  $category
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category, Request $request): RedirectResponse
     {
-        //
+        try{
+            $category->delete();
+
+        } catch (\Exception $e) {
+            
+            $this->logger::error(LoggerMessages::ERROR_DELETE_CATEGORY->value, ['error' => $e->getMessage()]);
+
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+        }
+
+        $request->session()->flash(SessionMessages::CATEGORY_DELETED->name, SessionMessages::CATEGORY_DELETED->value);
+
+        return redirect()->route('category.all');
     }
 }
