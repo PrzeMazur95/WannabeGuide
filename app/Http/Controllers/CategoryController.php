@@ -118,13 +118,18 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Category  $category
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category): RedirectResponse
     {
-        //
+        try{
+            $category->delete();
+            return redirect()->route('category.all');
+        }catch(\Exception $e){
+            dd($e);
+        }
     }
 }
