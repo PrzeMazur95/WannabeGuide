@@ -90,4 +90,15 @@ class CategoryControllerTest extends TestCase
 
         $view->assertSee($new_category->topics[1]->name);
     }
+
+    /**
+     * Test if we can edit a specified category
+     * 
+     * @test
+     * @return void
+     */
+    public function if_we_could_edit_a_category()
+    {
+        
+    }
 }
