@@ -100,5 +100,16 @@ class CategoryControllerTest extends TestCase
     public function if_we_could_edit_a_category()
     {
         
+        $new_category = $this->category::factory()->create();
+        $new_category->save();
+
+        $category = Category::find($new_category->id);
+
+        $category->name ='updated_name';
+
+        $view = $this->view('Category/category', ['category'=>$category]);
+
+        $view->assertSee($category->name);
+
     }
 }
