@@ -30,4 +30,11 @@ Route::controller(TopicController::class)->group(function () {
     Route::patch('topic/update', 'update');
     //route to delete specific topic
     Route::delete('topic/delete', 'destroy');
-});
+}
+);
+
+ Route::controller(CategoryController::class)->group(function () {
+    Route::get('category', 'index');
+ });
+    
+
