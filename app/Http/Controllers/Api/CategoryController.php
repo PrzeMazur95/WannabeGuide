@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    /**
+     * Category class construct
+     *
+     * @param Category $category
+     */
+    public function __construct(
+        private Category $category
+    ) {
+    }
     /**
      * Display a listing of the resource.
      *
