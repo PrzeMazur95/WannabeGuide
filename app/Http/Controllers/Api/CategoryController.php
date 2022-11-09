@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController;
+use App\Enum\Api\LoggerMessages;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends BaseController
 {
@@ -17,21 +19,23 @@ class CategoryController extends BaseController
      * @param Category $category
      */
     public function __construct(
-        private Category $category
+        private Category $category, 
+        private Log $logger
     ) {
+        parent::__construct($logger);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(): JsonResponse
+    public function index()
     {
         try{
-            return $this->category::all();
-            
+            return $this->categoryy::all();
+
         } catch (\Exception $e) {
-            $loggerMsg = "";
+            $loggerMsg = LoggerMessages::ERROR_GET_ALL_TOPICS->value;
             $restResponse = "";
             $responseCode = 404;
 
