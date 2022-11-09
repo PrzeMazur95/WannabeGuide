@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\BaseController;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
 
     /**
@@ -26,7 +27,20 @@ class CategoryController extends Controller
      */
     public function index(): JsonResponse
     {
-        return response()->json($this->category::all());
+        try{
+            return $this->category::all();
+            
+        } catch (\Exception $e) {
+            $loggerMsg = "";
+            $restResponse = "";
+            $responseCode = 404;
+
+            $this->catch($e, $loggerMsg, $restResponse, $responseCode);
+        }
+        // $data=array('dbstatement'=>$this->category::all(),'class'=>'Category');
+        // $receiveddata = $this->trycatch($data);
+        // dd($receiveddata);
+        // return response()->json($this->category::all());
     }
 
     /**
