@@ -22,4 +22,6 @@ enum RestResponses: string
     case USER_NOT_FOUND = 'There is no user with this id';
 
     case USER_IS_NOT_AN_OWNER = 'User which you have typed is not an owner of this topic';
+
+    case ERROR_GET_ALL_CATEGORIES = 'Something went wrong when trying to see all categories, please try one more time, or contact with admin';
 }
