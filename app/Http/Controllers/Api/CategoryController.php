@@ -35,7 +35,7 @@ class CategoryController extends BaseController
     public function index()
     {
         try{
-            return $this->categoryy::all();
+            return $this->category::all();
 
         } catch (\Exception $e) {
 
