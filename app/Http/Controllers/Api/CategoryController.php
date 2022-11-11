@@ -19,6 +19,8 @@ class CategoryController extends BaseController
      * Category class construct
      *
      * @param Category $category
+     * @param Log $logger
+     * @param Response $responseCode
      */
     public function __construct(
         private Category $category, 
