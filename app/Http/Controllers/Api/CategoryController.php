@@ -10,6 +10,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response;
 
 class CategoryController extends BaseController
 {
@@ -21,7 +22,8 @@ class CategoryController extends BaseController
      */
     public function __construct(
         private Category $category, 
-        private Log $logger
+        private Log $logger,
+        private Response $responseCode,
     ) {
         parent::__construct($logger);
     }
@@ -36,16 +38,12 @@ class CategoryController extends BaseController
             return $this->categoryy::all();
 
         } catch (\Exception $e) {
-            $loggerMsg = LoggerMessages::ERROR_GET_ALL_TOPICS->value;
-            $restResponse = "";
-            $responseCode = 404;
 
-            $this->catch($e, $loggerMsg, $restResponse, $responseCode);
+            $this->catch($e, LoggerMessages::ERROR_GET_ALL_CATEGORIES->value);
+
+            return response()->json(RestResponses::ERROR_GET_ALL_CATEGORIES, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+           
         }
-        // $data=array('dbstatement'=>$this->category::all(),'class'=>'Category');
-        // $receiveddata = $this->trycatch($data);
-        // dd($receiveddata);
-        // return response()->json($this->category::all());
     }
 
     /**
