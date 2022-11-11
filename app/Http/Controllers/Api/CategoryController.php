@@ -3,19 +3,49 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\BaseController;
+use App\Enum\Api\LoggerMessages;
+use App\Enum\Api\RestResponses;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\Response;
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
+
+    /**
+     * Category class construct
+     *
+     * @param Category $category
+     * @param Log $logger
+     * @param Response $responseCode
+     */
+    public function __construct(
+        private Category $category, 
+        private Log $logger,
+        private Response $responseCode,
+    ) {
+        parent::__construct($logger);
+    }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        //
+        try{
+            return $this->category::all();
+
+        } catch (\Exception $e) {
+
+            $this->catch($e, LoggerMessages::ERROR_GET_ALL_CATEGORIES->value);
+
+            return response()->json(RestResponses::ERROR_GET_ALL_CATEGORIES, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+           
+        }
     }
 
     /**
