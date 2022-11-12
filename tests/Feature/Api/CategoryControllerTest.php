@@ -9,14 +9,17 @@ use Tests\TestCase;
 class CategoryControllerTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Test if we could get all categories
      *
      * @return void
+     * @test
      */
-    public function test_example()
+    public function if_we_could_return_all_categories()
     {
-        $response = $this->get('/');
+        //to be contiuned after adding route to create a category via API
+        $response = $this->getJson('api/category');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+            ->hasAll(['id','name','user_id','created_at','updated_ut']);
     }
 }
