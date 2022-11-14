@@ -34,8 +34,12 @@ Route::controller(TopicController::class)->group(function () {
 }
 );
 
- Route::controller(CategoryController::class)->group(function () {
-    Route::get('category', 'index');
- });
+Route::controller(CategoryController::class)->group(function () {
+     //route to get all categories
+     Route::get('category', 'index');
+     //route to store new category
+     Route::post('category', 'store');
+}
+);
     
 
