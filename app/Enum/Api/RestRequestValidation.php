@@ -13,9 +13,10 @@ enum RestRequestValidation: string
     case TOPIC_ID_IS_REQUIRED = 'Topic id is required';
 
     case NAME_FIELD_HAS_TO_BE_A_STRING = 'Name field has to be a string';
-    case NAME_FIELD_HAS_TO_BE_UNIQUE = 'There is a topic with the same name';
+    case NAME_FIELD_HAS_TO_BE_UNIQUE = 'There is an object in db with the same name';
     case DESCRIPTION_HAS_TO_BE_A_STRING = 'Description has to be a string';
     case USER_ID_HAS_TO_BE_AN_INT = 'User id has to be an integer';
     case CATEGORY_ID_HAS_TO_BE_AN_INT = 'Category id has to be an integer';
     case TOPIC_ID_HAS_TO_BE_AN_INT = 'Topic id has to be an integer';
+    case USER_HAS_TO_BE_REGISTERED_IN_DB = 'User has to be registered in db';
 }
