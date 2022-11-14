@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'user_id'=>'required|exists:users,user_id'
+            'user_id'=>'required|exists:users,id'
         ];
     }
 }
