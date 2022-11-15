@@ -63,11 +63,19 @@ class CategoryController extends BaseController
      * Store a newly created category in storage.
      *
      * @param  StoreRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreRequest $request)
     {
-        //
+        try{
+            $this->category->create($request->validated());
+        } catch (\Exception $e) {
+            $this->catch($e, LoggerMessages::ERROR_NEW_CATEGORY_ADD->value);
+
+            return response()->json(RestResponses::ERROR_ADD_NEW_CATEGORY, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response()->json(RestResponses::NEW_CATEGORY_HAS_BEEN_ADDED, $this->responseCode::HTTP_CREATED);
     }
 
     /**
