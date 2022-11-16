@@ -14,4 +14,5 @@ enum LoggerMessages: string
     case ERROR_DELETE_TOPIC = 'Something went wrong when trying to delete topic from db through API!';
 
     case ERROR_GET_ALL_CATEGORIES = 'Something went wrong when trying to get all categories!';
+    case ERROR_NEW_CATEGORY_ADD = 'Something went wrong when adding new category through API!';
 }
