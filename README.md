@@ -1,7 +1,7 @@
 ## Steps to run project 
 * Run in console below commands
     * docker-compose up -d
-    * npm install && npm watch dev && npm run
+    * npm install && npm watch dev && npm run dev
     * php artisan serve
     * type in terminal :
         * "php artisan make:migrate" - to create tables
