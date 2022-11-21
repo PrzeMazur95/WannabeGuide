@@ -33,12 +33,12 @@ class CategoryController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         try{
-            return $this->category::all();
+            return response()->json($this->category::all());
 
         } catch (\Exception $e) {
 
@@ -63,9 +63,9 @@ class CategoryController extends BaseController
      * Store a newly created category in storage.
      *
      * @param  StoreRequest  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): JsonResponse
     {
         try{
             $this->category->create($request->validated());
@@ -82,9 +82,9 @@ class CategoryController extends BaseController
      * Display the specified resource.
      *
      * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function show(Category $category)
+    public function show(Category $category): JsonResponse
     {
         //
     }
