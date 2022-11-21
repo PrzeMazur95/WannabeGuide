@@ -39,6 +39,8 @@ Route::controller(CategoryController::class)->group(function () {
      Route::get('categories', 'index');
      //route to store new category
      Route::post('category', 'store');
+     //route to show specific category
+     Route::get('category', 'show');
 }
 );
     
