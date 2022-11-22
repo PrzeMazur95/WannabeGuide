@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Enum\Api\RestRequestValidation;
 
 class ShowRequest extends FormRequest
 {
@@ -27,4 +28,19 @@ class ShowRequest extends FormRequest
             'id' => 'required|int|exists:categories,id'
         ];
     }
+
+    /**
+     * Return specific messages which are declared in RestRequestValidation enum file
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'id.required' => RestRequestValidation::CATEGORY_ID_IS_REQUIRED->value,
+            'id.int' => RestRequestValidation::CATEGORY_ID_HAS_TO_BE_AN_INT->value,
+            'id.exists' => RestRequestValidation::CATEGORY_EXISTS->value,
+        ];
+    }
+
 }
