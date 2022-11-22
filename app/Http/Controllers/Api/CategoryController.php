@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Api\Category\StoreRequest;
+use App\Http\Requests\Api\Category\ShowRequest;
 use App\Enum\Api\LoggerMessages;
 use App\Enum\Api\RestResponses;
 use App\Models\Category;
@@ -33,12 +34,12 @@ class CategoryController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function index()
+    public function index(): JsonResponse
     {
         try{
-            return $this->category::all();
+            return response()->json($this->category::all());
 
         } catch (\Exception $e) {
 
@@ -63,9 +64,9 @@ class CategoryController extends BaseController
      * Store a newly created category in storage.
      *
      * @param  StoreRequest  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): JsonResponse
     {
         try{
             $this->category->create($request->validated());
@@ -79,14 +80,21 @@ class CategoryController extends BaseController
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified category.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param ShowRequest
+     * @return JsonResponse
      */
-    public function show(Category $category)
+    public function show(ShowRequest $request): JsonResponse
     {
-        //
+        try {
+            return response()->json($this->category::find($request->id));
+        }catch (\Exception $e)  {
+
+            $this->catch($e, LoggerMessages::ERROR_SHOW_SPECIFIC_CATEGORY->value);
+            return response()->json(RestResponses::ERROR_ADD_NEW_CATEGORY, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        
     }
 
     /**

@@ -15,4 +15,5 @@ enum LoggerMessages: string
 
     case ERROR_GET_ALL_CATEGORIES = 'Something went wrong when trying to get all categories!';
     case ERROR_NEW_CATEGORY_ADD = 'Something went wrong when adding new category through API!';
+    case ERROR_SHOW_SPECIFIC_CATEGORY = 'Something went wrong when trying to show speciifc category through API!';
 }
