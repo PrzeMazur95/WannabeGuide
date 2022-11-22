@@ -87,7 +87,14 @@ class CategoryController extends BaseController
      */
     public function show(ShowRequest $request): JsonResponse
     {
-        //
+        try {
+            return response()->json($this->category::find($request->id));
+        }catch (\Exception $e)  {
+
+            $this->catch($e, LoggerMessages::ERROR_SHOW_SPECIFIC_CATEGORY->value);
+            return response()->json(RestResponses::ERROR_ADD_NEW_CATEGORY, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+        }
+        
     }
 
     /**
