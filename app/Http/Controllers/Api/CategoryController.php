@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Api\Category\StoreRequest;
+use App\Http\Requests\Api\Category\ShowRequest;
 use App\Enum\Api\LoggerMessages;
 use App\Enum\Api\RestResponses;
 use App\Models\Category;
@@ -79,12 +80,12 @@ class CategoryController extends BaseController
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified category.
      *
-     * @param  \App\Models\Category  $category
+     * @param ShowRequest
      * @return JsonResponse
      */
-    public function show(Category $category): JsonResponse
+    public function show(ShowRequest $request): JsonResponse
     {
         //
     }
