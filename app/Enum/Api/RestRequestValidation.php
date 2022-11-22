@@ -19,4 +19,6 @@ enum RestRequestValidation: string
     case CATEGORY_ID_HAS_TO_BE_AN_INT = 'Category id has to be an integer';
     case TOPIC_ID_HAS_TO_BE_AN_INT = 'Topic id has to be an integer';
     case USER_HAS_TO_BE_REGISTERED_IN_DB = 'User has to be registered in db';
+
+    case CATEGORY_EXISTS = "This category does not exist";
 }
