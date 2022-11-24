@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Enum\Api\RestRequestValidation;
 
 class DeleteRequest extends FormRequest
 {
@@ -26,6 +27,16 @@ class DeleteRequest extends FormRequest
         return [
             'id'=>'required|int',
             'user_id'=>'required|int'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'id.required' => RestRequestValidation::CATEGORY_ID_IS_REQUIRED->value,
+            'id.int' => RestRequestValidation::CATEGORY_ID_HAS_TO_BE_AN_INT->value,
+            'user_id.required' => RestRequestValidation::USER_ID_IS_REQUIRED->value,
+            'user_id.int' => RestRequestValidation::USER_ID_HAS_TO_BE_AN_INT->value,
         ];
     }
 }
