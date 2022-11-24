@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Services;
+
+use App\Models\Category;
+use App\Models\User;
+
+
+class CategoryService {
+
+    public function __construct(
+        private Category $category,
+        private User $user
+    ){
+    }
+
+    /**
+     * Checks if user is an owner of given category
+     *
+     * @param User $user_id
+     * @param Category $category_id
+     * @return bool
+     */
+    function ifUserIsAnOwnerOfGivenCategory($user_id, $category_id): bool
+    {
+        return ($user_id !== $this->category->find($category_id)->user_id) ? true : false;
+    }
+}
