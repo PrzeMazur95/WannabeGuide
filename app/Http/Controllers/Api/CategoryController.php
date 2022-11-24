@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Api\Category\StoreRequest;
 use App\Http\Requests\Api\Category\ShowRequest;
+use App\Http\Requests\Api\Category\DeleteRequest;
 use App\Enum\Api\LoggerMessages;
 use App\Enum\Api\RestResponses;
 use App\Models\Category;
@@ -121,13 +122,20 @@ class CategoryController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param  DeleteRequest $request
+     * @return JsonResponse
      */
-    public function destroy(Category $category)
+    public function destroy(DeleteRequest $request)
     {
-        //
+        if ($request->user_id !== $this->category->find($request->id)->user_id) {
+
+            return response()->json('user is not an author', 422);
+        } else  {
+            return response()->json('will be dleeted', 200);
+        }
+
+        
     }
 }
