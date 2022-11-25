@@ -10,6 +10,7 @@ use App\Http\Requests\Api\Category\DeleteRequest;
 use App\Enum\Api\LoggerMessages;
 use App\Enum\Api\RestResponses;
 use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -29,6 +30,7 @@ class CategoryController extends BaseController
         private Category $category, 
         private Log $logger,
         private Response $responseCode,
+        private CategoryService $categoryService,
     ) {
         parent::__construct($logger);
     }
@@ -129,13 +131,13 @@ class CategoryController extends BaseController
      */
     public function destroy(DeleteRequest $request)
     {
-        if ($request->user_id !== $this->category->find($request->id)->user_id) {
+        
+        if ($this->categoryService->ifUserIsAnOwnerOfGivenCategory($request->id, $request->user_id)) {
 
             return response()->json('user is not an author', 422);
-        } else  {
+            
+        } else {
             return response()->json('will be dleeted', 200);
-        }
-
-        
+        } 
     }
 }
