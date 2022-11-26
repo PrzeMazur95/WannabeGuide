@@ -129,15 +129,18 @@ class CategoryController extends BaseController
      * @param  DeleteRequest $request
      * @return JsonResponse
      */
-    public function destroy(DeleteRequest $request)
+    public function destroy(DeleteRequest $request): JsonResponse
     {
         
         if ($this->categoryService->ifUserIsAnOwnerOfGivenCategory($request->id, $request->user_id)) {
 
-            return response()->json('user is not an author', 422);
+            return response()->json('User is not na owner of this category', 200);
             
         } else {
-            return response()->json('will be dleeted', 200);
+
+            $this->category::find($request->id)->delete();
+
+            return response()->json('Category was succesfully deleted', 401);
         } 
     }
 }
