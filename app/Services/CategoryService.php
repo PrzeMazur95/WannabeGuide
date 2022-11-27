@@ -23,7 +23,7 @@ class CategoryService {
      * @param Category $category_id
      * @return bool
      */
-    function ifUserIsAnOwnerOfGivenCategory($user_id, $category_id): bool
+    function ifUserIsAnOwnerOfGivenCategory($category_id, $user_id): bool
     {
         return ($user_id !== $this->category->find($category_id)->user_id) ? true : false;
     }
