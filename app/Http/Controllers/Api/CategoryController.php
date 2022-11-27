@@ -140,7 +140,7 @@ class CategoryController extends BaseController
 
             $this->category::find($request->id)->delete();
 
-            return response()->json('Category was succesfully deleted', 401);
+            return response()->json(RestResponses::CATEGORY_HAS_BEEN_DELETED, $this->responseCode::HTTP_NO_CONTENT);
         } 
     }
 }
