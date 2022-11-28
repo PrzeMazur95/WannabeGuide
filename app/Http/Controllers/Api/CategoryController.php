@@ -134,7 +134,7 @@ class CategoryController extends BaseController
         
         if ($this->categoryService->ifUserIsAnOwnerOfGivenCategory($request->id, $request->user_id)) {
 
-            return response()->json('User is not na owner of this category', 200);
+            return response()->json(RestResponses::USER_IS_NOT_AN_OWNER_OF_THIS_CATEGORY, 401);
             
         } else {
 
