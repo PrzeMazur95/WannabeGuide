@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Api\BaseController;
 use App\Http\Requests\Api\Category\StoreRequest;
 use App\Http\Requests\Api\Category\ShowRequest;
+use App\Http\Requests\Api\Category\DeleteRequest;
 use App\Enum\Api\LoggerMessages;
 use App\Enum\Api\RestResponses;
 use App\Models\Category;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
@@ -28,6 +30,7 @@ class CategoryController extends BaseController
         private Category $category, 
         private Log $logger,
         private Response $responseCode,
+        private CategoryService $categoryService,
     ) {
         parent::__construct($logger);
     }
@@ -121,13 +124,30 @@ class CategoryController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified category from storage.
      *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
+     * @param  DeleteRequest $request
+     * @return JsonResponse
      */
-    public function destroy(Category $category)
+    public function destroy(DeleteRequest $request): JsonResponse
     {
-        //
+        
+        if ($this->categoryService->ifUserIsAnOwnerOfGivenCategory($request->id, $request->user_id)) {
+
+            return response()->json(RestResponses::USER_IS_NOT_AN_OWNER_OF_THIS_CATEGORY, 401);
+            
+        } else {
+
+            try{
+
+                $this->category::find($request->id)->delete();
+            } catch (\Exception $e){
+
+                $this->catch($e, LoggerMessages::ERROR_DELETE_SPECIFIC_CATEGORY->value);
+                return response()->json(RestResponses::ERROR_DELETE_CATEGORY, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+            }
+
+            return response()->json(RestResponses::CATEGORY_HAS_BEEN_DELETED, $this->responseCode::HTTP_NO_CONTENT);
+        } 
     }
 }

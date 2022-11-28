@@ -41,6 +41,8 @@ Route::controller(CategoryController::class)->group(function () {
      Route::post('category', 'store');
      //route to show specific category
      Route::get('category', 'show');
+     //route to delete specific category
+     Route::delete('category/delete', 'destroy');
 }
 );
     
