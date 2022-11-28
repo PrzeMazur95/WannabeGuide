@@ -138,7 +138,14 @@ class CategoryController extends BaseController
             
         } else {
 
-            $this->category::find($request->id)->delete();
+            try{
+
+                $this->category::find($request->id)->delete();
+            } catch (\Exception $e){
+
+                $this->catch($e, LoggerMessages::ERROR_DELETE_SPECIFIC_CATEGORY->value);
+                return response()->json(RestResponses::ERROR_DELETE_CATEGORY, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
+            }
 
             return response()->json(RestResponses::CATEGORY_HAS_BEEN_DELETED, $this->responseCode::HTTP_NO_CONTENT);
         } 
