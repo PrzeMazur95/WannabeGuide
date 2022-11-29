@@ -67,15 +67,11 @@ class TopicController extends Controller
      */
     public function store(StoreRequest $request): View
     {
-        $topic=$this->topic;
-
-        $topic->name=$request->name;
-        $topic->description=$request->description;
-        $topic->category_id=$request->category_id;
-        $topic->user_id=$this->auth::user()->id;
 
         try {
 
+            $topic = $this->topic->make($request->validated());
+            $topic->user_id=$this->auth::user()->id;
             $topic->save();
 
         } catch (\Exception $e) {
