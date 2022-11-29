@@ -16,7 +16,8 @@ class Topic extends Model
         'category',
         'description',
         'status',
-        'user_id'
+        'user_id',
+        'category_id'
     ];
 
     /**
