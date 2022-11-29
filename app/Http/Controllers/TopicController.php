@@ -62,9 +62,10 @@ class TopicController extends Controller
      * Store a newly created topic in storage.
      *
      * @param  StoreRequest  $request
+     * @return View
      * 
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): View
     {
         $topic=$this->topic;
 
@@ -87,7 +88,7 @@ class TopicController extends Controller
 
         $request->session()->flash(SessionMessages::TOPIC_ADDED->name, SessionMessages::TOPIC_ADDED->value);
 
-        return redirect()->route('topics.all');
+        return view('Topic/all_topics', ['topics'=>$this->topic::all()]);
     }
 
     /**
