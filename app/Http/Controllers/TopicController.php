@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -79,7 +81,6 @@ class TopicController extends Controller
             $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_TOPIC->value, ['error' => $e->getMessage()]);
 
             return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
-
         }
 
         $request->session()->flash(SessionMessages::TOPIC_ADDED->name, SessionMessages::TOPIC_ADDED->value);
@@ -127,7 +128,6 @@ class TopicController extends Controller
             $this->logger::error(LoggerMessages::ERROR_UPDATE_TOPIC->value, ['error' => $e->getMessage()]);
 
             return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
-
         }
 
         $request->session()->flash(SessionMessages::TOPIC_UPDATED->name, SessionMessages::TOPIC_UPDATED->value);
@@ -153,13 +153,10 @@ class TopicController extends Controller
             $this->logger::error(LoggerMessages::ERROR_DELETE_TOPIC->value, ['error' => $e->getMessage()]);
 
             return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
-
         }
-        
 
         $request->session()->flash(SessionMessages::TOPIC_DELETED->name, SessionMessages::TOPIC_DELETED->value);
 
         return redirect()->route('topics.all');
-
     }
 }
