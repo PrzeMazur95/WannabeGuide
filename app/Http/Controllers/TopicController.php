@@ -114,9 +114,9 @@ class TopicController extends Controller
      *
      * @param  UpdateRequest $request
      * @param  Topic $topic
-     * @return RedirectResponse
+     * @return View
      */
-    public function update(UpdateRequest $request, Topic $topic): RedirectResponse
+    public function update(UpdateRequest $request, Topic $topic): View
     {
         try {
 
@@ -132,7 +132,7 @@ class TopicController extends Controller
 
         $request->session()->flash(SessionMessages::TOPIC_UPDATED->name, SessionMessages::TOPIC_UPDATED->value);
         
-        return redirect()->route('topics.all');
+        return view('Topic/all_topics', ['topics'=>$this->topic::all()]);
     }
 
     /**
