@@ -21,4 +21,5 @@ enum RestRequestValidation: string
     case USER_HAS_TO_BE_REGISTERED_IN_DB = 'User has to be registered in db';
 
     case CATEGORY_EXISTS = "This category does not exist";
+    case TOPIC_NOT_FOUND = 'There is no topic with this id';
 }
