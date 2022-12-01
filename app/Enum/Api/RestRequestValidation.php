@@ -22,4 +22,5 @@ enum RestRequestValidation: string
 
     case CATEGORY_EXISTS = "This category does not exist";
     case TOPIC_NOT_FOUND = 'There is no topic with this id';
+    case USER_NOT_FOUND = 'There is no user with this id';
 }
