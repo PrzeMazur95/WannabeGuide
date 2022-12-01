@@ -158,11 +158,6 @@ class TopicController extends Controller
             return response()->json(RestResponses::USER_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
         }
 
-        if(!$this->TopicService->checkIfExists($request->id)){
-
-            return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
-        }
-
         if(!$this->UserService->checkIfUserIsAnOwnerOfSpecificTopic($request->user_id, $request->id)){
 
             return response()->json(RestResponses::USER_IS_NOT_AN_OWNER, $this->responseCode::HTTP_NOT_FOUND);            
