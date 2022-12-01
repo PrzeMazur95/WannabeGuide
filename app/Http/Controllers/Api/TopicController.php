@@ -153,12 +153,7 @@ class TopicController extends Controller
      */
     public function destroy(DeleteRequest $request): JsonResponse
     {
-        if(!$this->UserService->checkIfExists($request->user_id)){
-
-            return response()->json(RestResponses::USER_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
-        }
-
-        if(!$this->UserService->checkIfUserIsAnOwnerOfSpecificTopic($request->user_id, $request->id)){
+        if (!$this->UserService->checkIfUserIsAnOwnerOfSpecificTopic($request->user_id, $request->id) ) {
 
             return response()->json(RestResponses::USER_IS_NOT_AN_OWNER, $this->responseCode::HTTP_NOT_FOUND);            
         }
