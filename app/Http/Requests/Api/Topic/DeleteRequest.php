@@ -26,7 +26,7 @@ class DeleteRequest extends FormRequest
     {
         return [
             "id" => "required|int|exists:topics,id",
-            "user_id" => "required|int"
+            "user_id" => "required|int|exists:users,id"
         ];
     }
 
@@ -42,7 +42,8 @@ class DeleteRequest extends FormRequest
             'id.int' => RestRequestValidation::TOPIC_ID_HAS_TO_BE_AN_INT->value,
             'id.exists' => RestRequestValidation::TOPIC_NOT_FOUND->value,
             'user_id.required' => RestRequestValidation::USER_ID_IS_REQUIRED->value,
-            'user_id.int' => RestRequestValidation::USER_ID_HAS_TO_BE_AN_INT->value
+            'user_id.int' => RestRequestValidation::USER_ID_HAS_TO_BE_AN_INT->value,
+            'user_id.exists' => RestRequestValidation::USER_NOT_FOUND->value
         ];
     }
 }
