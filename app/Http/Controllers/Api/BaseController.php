@@ -11,21 +11,12 @@ use Illuminate\Http\JsonResponse;
 
 class BaseController extends Controller
 {
-    /**
-     * Logger object used to log errors
-     *
-     * @var Log
-     */
-    private $logger;
 
     /**
      * Set up logger as a DI, to log errors
-     *
-     * @param Log $logger
      */
-    public function __construct($logger)
+    public function __construct(private Log $logger)
     {
-        $this->logger = $logger;
     }
 
     /**
