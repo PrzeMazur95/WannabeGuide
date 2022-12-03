@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class TagController extends Controller
 {
@@ -31,11 +32,11 @@ class TagController extends Controller
     /**
      * Displays form to create a new tag.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create(Request $request)
+    public function create(Request $request): View
     {
-        //
+        return view('Tag/new_tag');
     }
 
     /**
