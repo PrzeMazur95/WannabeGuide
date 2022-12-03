@@ -35,7 +35,7 @@ class CategoryControllerTest extends TestCase
      */
     public function if_we_could_return_all_categories()
     {
-        $response = $this->getJson('api/category');
+        $response = $this->getJson('api/categories');
 
         $response->assertStatus(200)
             ->assertJsonStructure( [ 
