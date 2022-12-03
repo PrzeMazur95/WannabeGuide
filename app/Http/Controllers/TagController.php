@@ -9,6 +9,9 @@ use App\Http\Requests\Tag\StoreRequest;
 
 class TagController extends Controller
 {
+    public function __construct(private Tag $tag)
+    {
+    }
     /**
      * Display a listing of the resource.
      *
