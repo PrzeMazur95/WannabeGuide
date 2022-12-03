@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,16 @@ Route::middleware('auth')->group( function () {
             Route::patch('/category/{category}/update', 'update')->name('category.update');
             //route to delete a category
             Route::delete('category/{category}', 'destroy')->name('category.delete');
+        }
+    );
+    Route::controller(TagController::class)->group(
+        function () {
+            //route to show all tags
+            Route::get('/tags', 'index')->name('tags.all');
+             //route to create new tag
+             Route::get('/tags/create', 'create')->name('tags.create');
+            //route to store new tag
+            Route::post('/tags/create', 'store')->name('tags.store');
         }
     );
 });
