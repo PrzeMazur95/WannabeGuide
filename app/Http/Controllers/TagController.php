@@ -29,6 +29,16 @@ class TagController extends Controller
     }
 
     /**
+     * Displays form to create a new tag.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        //
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Tag  $tag
