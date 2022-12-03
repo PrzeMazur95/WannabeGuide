@@ -62,6 +62,8 @@ Route::middleware('auth')->group( function () {
             Route::get('/tags', 'index')->name('tags.all');
              //route to create new tag
              Route::get('/tags/create', 'create')->name('tags.create');
+            //route to store new tag
+            Route::post('/tags/create', 'store')->name('tags.store');
         }
     );
 });
