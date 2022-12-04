@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use App\Enum\ErrorMessages;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Requests\Tag\StoreRequest;
@@ -23,14 +24,20 @@ class TagController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created tag in storage.
      *
      * @param  StoreRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): View
     {
-        dd($request->validated());
+        try{
+            $tag = $this->tag::create($request->validated());
+        } catch (\Exception $e) {
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+        }
+
+        return view('Tag/all_tags')->with($this->tag::all());
     }
 
     /**
