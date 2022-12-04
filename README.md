@@ -137,4 +137,5 @@ _____
  * add dusk test cases for act like a user
  * add user factory, to have an admin on the begginign
  * edit update topic, add there choose new category
+ * tag model doess not have any api methods
 
