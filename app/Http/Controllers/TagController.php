@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Enum\ErrorMessages;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use App\Http\Requests\Tag\StoreRequest;
 
 class TagController extends Controller
 {
-    public function __construct(private Tag $tag)
+    public function __construct(
+        private Tag $tag,
+        private Log $logger
+    )
     {
     }
     /**
