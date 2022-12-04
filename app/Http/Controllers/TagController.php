@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Enum\ErrorMessages;
+use App\Enum\LoggerMessages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
@@ -38,6 +39,7 @@ class TagController extends Controller
         try{
             $tag = $this->tag::create($request->validated());
         } catch (\Exception $e) {
+            $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_TAG->value, ['error' => $e->getMessage()]);
             return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
         }
 
