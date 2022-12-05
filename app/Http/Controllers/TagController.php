@@ -43,7 +43,7 @@ class TagController extends Controller
             return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
         }
 
-        return view('Tag/all_tags')->with($this->tag::all());
+        return view('Tag/all_tags')->with('tags', $this->tag::all());
     }
 
     /**
