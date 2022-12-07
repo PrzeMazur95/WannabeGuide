@@ -21,9 +21,9 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('Tag/all_tags')->with('tags', $this->tag::all());
     }
