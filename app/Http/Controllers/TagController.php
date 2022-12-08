@@ -57,13 +57,13 @@ class TagController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified tag from storage.
      *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
+     * @param Tag $tag
+     * @return View
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag): View
     {
-        //
+        return view('Tag/all_tags', ['tags'=>$this->tag::all()]);
     }
 }
