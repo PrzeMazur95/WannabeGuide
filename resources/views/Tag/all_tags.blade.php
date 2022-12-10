@@ -5,7 +5,12 @@
         </h2>
         <div class="flex flex-wrap align-center">
             @forelse ( $tags as $tag )
-                <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 ..."><p class="truncate ...">{{ $tag->name }}</p></div>
+                <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 ...">
+                    <p class="truncate ...">{{ $tag->name }}</p>
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold px-1 my-6 rounded">
+                        <p class="text-sm">x</p>
+                    </button>
+                </div>
             @empty
                 <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 ...">There are no tags yet</div>
             @endforelse
