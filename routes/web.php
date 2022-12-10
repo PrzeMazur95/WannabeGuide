@@ -65,7 +65,7 @@ Route::middleware('auth')->group( function () {
             //route to store new tag
             Route::post('/tags/create', 'store')->name('tags.store');
             //route to delete a tag
-            Route::get('/tags/{tag}', 'destroy')->name('tag.delete');
+            Route::delete('/tags/{tag}', 'destroy')->name('tag.delete');
         }
     );
 });
