@@ -64,6 +64,12 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag): View
     {
-        return view('Tag/all_tags', ['tags'=>$this->tag::all()]);
+        try{ 
+            $tag->delete();
+            $tags=$this->tag::all();
+        } catch (\Exception){
+            return view('Tag/all_tags', ['tags'=>$tags]);
+        }
+        return view('Tag/all_tags', ['tags'=>$tags]);
     }
 }
