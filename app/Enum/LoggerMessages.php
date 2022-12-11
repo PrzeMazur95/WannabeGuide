@@ -17,4 +17,6 @@ enum LoggerMessages: string
     case ERROR_DELETE_CATEGORY = 'Something went wrong when trying to delete this category!';
 
     case ERROR_SAVE_NEW_TAG = 'Something went wrong when adding new TAG in web!';
+    case ERROR_DELETE_TAG = 'Something went wrong when trying to delete this tag!';
+
 }
