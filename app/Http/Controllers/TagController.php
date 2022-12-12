@@ -8,7 +8,9 @@ use App\Enum\LoggerMessages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use App\Enum\SessionMessages;
 use App\Http\Requests\Tag\StoreRequest;
+
 
 class TagController extends Controller
 {
@@ -62,14 +64,17 @@ class TagController extends Controller
      * @param Tag $tag
      * @return View
      */
-    public function destroy(Tag $tag): View
+    public function destroy(Tag $tag, Request $request): View
     {
         try{ 
             $tag->delete();
         } catch (\Exception $e){
             $this->logger::error(LoggerMessages::ERROR_DELETE_TAG->value, ['error' => $e->getMessage()]);
+
             return view('Tag/all_tags', ['tags'=>$this->tag::all()]);
         }
+        $request->session()->flash(SessionMessages::TAG_DELETED->name, SessionMessages::TAG_DELETED->value);
+
         return view('Tag/all_tags', ['tags'=>$this->tag::all()]);
     }
 }
