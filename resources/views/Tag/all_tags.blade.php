@@ -3,6 +3,8 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{ __('Here we have all tags') }}
         </h2>
+    </x-slot>
+    <x-slot name="slot">
         <div class="flex flex-wrap align-center">
             @forelse ( $tags as $tag )
                 <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 ...">
@@ -19,4 +21,5 @@
                 <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 ...">There are no tags yet</div>
             @endforelse
         </div>
+    </x-slot>
 </x-app-layout>
