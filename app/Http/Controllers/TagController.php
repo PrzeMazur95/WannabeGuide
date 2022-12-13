@@ -42,8 +42,10 @@ class TagController extends Controller
             $tag = $this->tag::create($request->validated());
         } catch (\Exception $e) {
             $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_TAG->value, ['error' => $e->getMessage()]);
+            
             return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
         }
+        $request->session()->flash(SessionMessages::TAG_ADDED->name, SessionMessages::TAG_ADDED->value);
 
         return view('Tag/all_tags')->with('tags', $this->tag::all());
     }
