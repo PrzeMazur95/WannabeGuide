@@ -14,5 +14,6 @@ enum SessionMessages: string
     case CATEGORY_UPDATED = 'Category has been succesfully updated !';
     case CATEGORY_DELETED = 'Category has been succesfully deleted !';
 
+    case TAG_ADDED = 'Tag has been succesfully added !';
     case TAG_DELETED = 'Tag has been succesfully deleted !';
 }
