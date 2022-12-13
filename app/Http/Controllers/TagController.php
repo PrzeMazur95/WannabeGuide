@@ -3,34 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tag;
+use App\Enum\ErrorMessages;
+use App\Enum\LoggerMessages;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
+use App\Enum\SessionMessages;
 use App\Http\Requests\Tag\StoreRequest;
+
 
 class TagController extends Controller
 {
-    public function __construct(private Tag $tag)
+    public function __construct(
+        private Tag $tag,
+        private Log $logger
+    )
     {
     }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        //
+        return view('Tag/all_tags')->with('tags', $this->tag::all());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created tag in storage.
      *
      * @param  StoreRequest  $request
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): View
     {
-        dd($request->validated());
+        try{
+            $tag = $this->tag::create($request->validated());
+        } catch (\Exception $e) {
+            $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_TAG->value, ['error' => $e->getMessage()]);
+            
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
+        }
+        $request->session()->flash(SessionMessages::TAG_ADDED->name, SessionMessages::TAG_ADDED->value);
+
+        return view('Tag/all_tags')->with('tags', $this->tag::all());
     }
 
     /**
@@ -44,13 +61,22 @@ class TagController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified tag from storage.
      *
-     * @param  \App\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
+     * @param Tag $tag
+     * @return View
      */
-    public function destroy(Tag $tag)
+    public function destroy(Tag $tag, Request $request): View
     {
-        //
+        try{ 
+            $tag->delete();
+        } catch (\Exception $e){
+            $this->logger::error(LoggerMessages::ERROR_DELETE_TAG->value, ['error' => $e->getMessage()]);
+
+            return view('Tag/all_tags', ['tags'=>$this->tag::all()]);
+        }
+        $request->session()->flash(SessionMessages::TAG_DELETED->name, SessionMessages::TAG_DELETED->value);
+
+        return view('Tag/all_tags', ['tags'=>$this->tag::all()]);
     }
 }
