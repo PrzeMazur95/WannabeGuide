@@ -9,6 +9,10 @@
             <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
                 <span class="font-medium">{{ Session::get('TAG_DELETED')}}</span>
             </div>
+        @elseif(Session::has('TAG_ADDED'))
+        <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+            <span class="font-medium">{{ Session::get('TAG_ADDED')}}</span>
+        </div>
         @endif
         <div class="flex flex-wrap align-center">
             @forelse ( $tags as $tag )
