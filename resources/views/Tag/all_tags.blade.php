@@ -18,7 +18,7 @@
             @forelse ( $tags as $tag )
                 <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 ...">
                     <p class="truncate ...">{{ $tag->name }}</p>
-                    <h6>Topics:</h6>
+                    <p class="text-xs">Topics:</p>
                     <form method="POST" action="{{ route('tag.delete', ['tag'=>$tag->id]) }}">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
