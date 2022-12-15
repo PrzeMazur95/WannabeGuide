@@ -13,7 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('tag_topic', function (Blueprint $table) {
+            $table->foreignId('tag_id')->constrained();
+            $table->foreignId('topic_id')->constrained();
+        });
     }
 
     /**
