@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use App\Enum\SessionMessages;
 use App\Http\Requests\Tag\StoreRequest;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TagController extends Controller
 {
@@ -78,5 +78,16 @@ class TagController extends Controller
         $request->session()->flash(SessionMessages::TAG_DELETED->name, SessionMessages::TAG_DELETED->value);
 
         return view('Tag/all_tags', ['tags'=>$this->tag::all()]);
+    }
+
+    /**
+     * Return view with all topics related to a specific tag
+     *
+     * @param Tag $tag
+     * @return View
+     */
+    public function topicsRelated(Tag $tag): View
+    {
+        return view('Tag/topics_related_to', ['tag'=>$tag]);
     }
 }
