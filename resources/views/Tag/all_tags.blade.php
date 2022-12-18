@@ -16,8 +16,10 @@
         @endif
         <div class="flex flex-wrap align-center">
             @forelse ( $tags as $tag )
+                @if( $tag->topics->count() > 0)
                 <a href="{{ url('topicsRelatedTo/'.$tag->id) }}">
-                    <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 ...">
+                @endif
+                    <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 hover:bg-sky-700...">
                         <p class="truncate ...">{{ $tag->name }}</p>
                         <p class="text-xs">Topics: {{ $tag->topics->count() }}</p>
                         <form method="POST" action="{{ route('tag.delete', ['tag'=>$tag->id]) }}">
