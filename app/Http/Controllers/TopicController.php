@@ -146,6 +146,7 @@ class TopicController extends Controller
     {
         try {
 
+            $topic->tags()->detach();
             $topic->delete();
 
         } catch (\Exception $e) {
