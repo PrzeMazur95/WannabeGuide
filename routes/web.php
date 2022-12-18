@@ -66,6 +66,8 @@ Route::middleware('auth')->group( function () {
             Route::post('/tags/create', 'store')->name('tags.store');
             //route to delete a tag
             Route::delete('/tags/{tag}', 'destroy')->name('tag.delete');
+            //route to show topis belogns to a tag
+            Route::get('topicsRelatedTo/{tag}', 'topicsRelated')->name('topics.related');
         }
     );
 });

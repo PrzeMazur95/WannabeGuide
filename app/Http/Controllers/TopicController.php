@@ -140,12 +140,13 @@ class TopicController extends Controller
      *
      * @param  Topic $topic
      * @param Request $request
-     * @return RedirectResponse
+     * @return View
      */
-    public function destroy(Topic $topic, Request $request): RedirectResponse
+    public function destroy(Topic $topic, Request $request): View
     {
         try {
 
+            $topic->tags()->detach();
             $topic->delete();
 
         } catch (\Exception $e) {
@@ -157,6 +158,6 @@ class TopicController extends Controller
 
         $request->session()->flash(SessionMessages::TOPIC_DELETED->name, SessionMessages::TOPIC_DELETED->value);
 
-        return redirect()->route('topics.all');
+        return view('Topic/all_topics', ['topics'=>$this->topic::all()]);
     }
 }
