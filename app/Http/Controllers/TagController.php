@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use App\Enum\SessionMessages;
 use App\Http\Requests\Tag\StoreRequest;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TagController extends Controller
 {
