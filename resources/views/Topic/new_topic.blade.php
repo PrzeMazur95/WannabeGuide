@@ -32,9 +32,12 @@
                             @endforeach
                         </select>
                         <div>
-                            <x-button class="mt-5">
+                            <x-button class="mt-5 w-1/6">
                             {{ __('Submit') }}
                             </x-button>
+                            <select id="tag" name="tag_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-2/6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Choose a tag</option>
+                            </select>
                         </div>
                     </div>
                 </form>
