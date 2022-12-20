@@ -31,14 +31,19 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                        <div>
-                            <x-button class="mt-5 w-1/6">
-                            {{ __('Submit') }}
-                            </x-button>
-                            <select id="tag" name="tag_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-2/6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <div class="mt-5">
+                            <select id="tag" name="tag_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-2/6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" multiple >
                                 <option selected>Choose a tag</option>
+                                <option>Choose a tag</option>
+                                <option>Choose a tag</option>
+                                <option>Choose a tag</option>
+                                <option>Choose a tag</option>
+                                <option>Choose a tag</option>
                             </select>
                         </div>
+                        <x-button class="mt-5 w-1/6">
+                            {{ __('Submit') }}
+                        </x-button>
                     </div>
                 </form>
                 </div>
