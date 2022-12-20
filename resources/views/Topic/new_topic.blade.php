@@ -31,9 +31,12 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                    <x-button class="mt-5">
-                    {{ __('Submit') }}
-                    </x-button>
+                        <div>
+                            <x-button class="mt-5">
+                            {{ __('Submit') }}
+                            </x-button>
+                        </div>
+                    </div>
                 </form>
                 </div>
             </div>
