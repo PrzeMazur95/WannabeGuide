@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Category;
+use App\Models\Tag;
 use App\Http\Requests\Topics\StoreRequest;
 use App\Http\Requests\Topics\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,8 @@ class TopicController extends Controller
         private Topic $topic,
         private Category $categories,
         private Log $logger,
-        private Auth $auth
+        private Auth $auth,
+        private Tag $tag
     ) {
     }
 
