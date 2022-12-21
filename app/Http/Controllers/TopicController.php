@@ -59,7 +59,7 @@ class TopicController extends Controller
      */
     public function create(Category $categories): View
     {
-        return view('Topic/new_topic', ['categories' => $categories->all()]);
+        return view('Topic/new_topic', ['categories' => $categories->all(), 'tags'=>$this->tag::all()]);
     }
 
     /**
