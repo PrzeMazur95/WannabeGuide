@@ -33,9 +33,9 @@
                         </select>
                         <div class="mt-5">
                             <select id="tag" name="tag_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-2/6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" multiple >
-                                <option selected>Choose a tag</option>
+                                <option selected value="0">Choose a tag</option>
                                 @forelse ($tags as $tag)
-                                    <option id="{{ $tag->id }}">{{$tag->name}}</option>
+                                    <option id="{{ $tag->id }}" name="tag_id" value="{{$tag->id}}">{{$tag->name}}</option>
                                 @empty
                                     
                                 @endforelse
