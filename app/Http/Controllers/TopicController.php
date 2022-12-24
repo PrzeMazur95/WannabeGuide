@@ -71,12 +71,17 @@ class TopicController extends Controller
      */
     public function store(StoreRequest $request): View
     {
-
         try {
 
             $topic = $this->topic->make($request->validated());
             $topic->user_id=$this->auth::user()->id;
             $topic->save();
+            
+            //move to some helper/job class
+            if ($request->tags_id) {
+
+                $topic->tags()->attach($request->tags_id);
+            }
 
         } catch (\Exception $e) {
 
