@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
             'name' => ['required', 'string', 'unique:topics'],
             'category_id' => ['required', 'int'],
             'description' => ['required', 'string'],
-            'tag_id' => ['int']
+            'tags_id' => ['array']
         ];
     }
 }
