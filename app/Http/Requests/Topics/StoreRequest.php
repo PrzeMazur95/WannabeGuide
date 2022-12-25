@@ -26,7 +26,8 @@ class StoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'unique:topics'],
             'category_id' => ['required', 'int'],
-            'description' => ['required', 'string']
+            'description' => ['required', 'string'],
+            'tags_id' => ['array']
         ];
     }
 }

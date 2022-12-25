@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use App\Enum\SessionMessages;
 use App\Http\Requests\Tag\StoreRequest;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class TagController extends Controller
 {
@@ -69,11 +68,12 @@ class TagController extends Controller
     public function destroy(Tag $tag, Request $request): View
     {
         try{ 
+            $tag->topics()->detach();
             $tag->delete();
         } catch (\Exception $e){
             $this->logger::error(LoggerMessages::ERROR_DELETE_TAG->value, ['error' => $e->getMessage()]);
 
-            return view('Tag/all_tags', ['tags'=>$this->tag::all()]);
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
         }
         $request->session()->flash(SessionMessages::TAG_DELETED->name, SessionMessages::TAG_DELETED->value);
 

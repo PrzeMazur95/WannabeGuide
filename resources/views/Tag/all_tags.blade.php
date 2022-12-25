@@ -32,7 +32,15 @@
                     </div>
                 </a>
             @empty
-                <div class="bg-white sm:rounded-lg mx-2 my-2 text-center h-24 w-24 p-4 ...">There are no tags yet</div>
+            <div class="w-full py-2 text-center">
+                <div class="max-w-7xl sm:px-6 lg:px-8">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            There are no tags yet
+                        </div>
+                    </div>
+                </div>
+            </div>
             @endforelse
         </div>
     </x-slot>

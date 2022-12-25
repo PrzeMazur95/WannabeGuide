@@ -7,15 +7,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Category;
+use App\Models\Tag;
 use App\Http\Requests\Topics\StoreRequest;
 use App\Http\Requests\Topics\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use App\Enum\LoggerMessages;
 use App\Enum\ErrorMessages;
 use App\Enum\SessionMessages;
 use Illuminate\View\View;
+use App\Services\TagService;
 
 class TopicController extends Controller
 {
@@ -24,7 +25,9 @@ class TopicController extends Controller
         private Topic $topic,
         private Category $categories,
         private Log $logger,
-        private Auth $auth
+        private Auth $auth,
+        private Tag $tag,
+        private TagService $tagService
     ) {
     }
 
@@ -57,7 +60,7 @@ class TopicController extends Controller
      */
     public function create(Category $categories): View
     {
-        return view('Topic/new_topic', ['categories' => $categories->all()]);
+        return view('Topic/new_topic', ['categories' => $categories->all(), 'tags'=>$this->tag::all()]);
     }
 
     /**
@@ -69,12 +72,16 @@ class TopicController extends Controller
      */
     public function store(StoreRequest $request): View
     {
-
         try {
 
             $topic = $this->topic->make($request->validated());
             $topic->user_id=$this->auth::user()->id;
             $topic->save();
+            
+            if ($request->tags_id) {
+
+                $this->tagService->attachTagsToTopic($topic, $request->tags_id);
+            }
 
         } catch (\Exception $e) {
 
