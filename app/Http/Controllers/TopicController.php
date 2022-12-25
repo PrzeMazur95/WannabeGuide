@@ -16,6 +16,7 @@ use App\Enum\LoggerMessages;
 use App\Enum\ErrorMessages;
 use App\Enum\SessionMessages;
 use Illuminate\View\View;
+use App\Services\TagService;
 
 class TopicController extends Controller
 {
@@ -25,7 +26,8 @@ class TopicController extends Controller
         private Category $categories,
         private Log $logger,
         private Auth $auth,
-        private Tag $tag
+        private Tag $tag,
+        private TagService $tagService
     ) {
     }
 
@@ -76,10 +78,9 @@ class TopicController extends Controller
             $topic->user_id=$this->auth::user()->id;
             $topic->save();
             
-            //move to some helper/job class
             if ($request->tags_id) {
 
-                $topic->tags()->attach($request->tags_id);
+                $this->tagService->attachTagsToTopic($topic, $request->tags_id);
             }
 
         } catch (\Exception $e) {
