@@ -11,7 +11,6 @@ use App\Models\Tag;
 use App\Http\Requests\Topics\StoreRequest;
 use App\Http\Requests\Topics\UpdateRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use App\Enum\LoggerMessages;
 use App\Enum\ErrorMessages;
