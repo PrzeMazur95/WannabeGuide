@@ -114,7 +114,12 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic): View
     {
-        return view('Topic/edit_topic', ['topic' => $topic]);
+        return view('Topic/edit_topic', [
+            'topic' => $topic, 
+            'categories'=>$this->categories->all(), 
+            'tags'=>$this->tag->all()
+            ]
+        );
     }
 
     /**
