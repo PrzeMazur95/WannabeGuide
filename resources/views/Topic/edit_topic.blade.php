@@ -1,10 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit this topic: ') }}{{$topic->name}}
+            Edit this topic: {{$topic->name}}
         </h2>
         <h5 class="font-semibold text-xs text-gray-800 leading-tight">
-            {{ __('Actual category: ') }}{{$topic->category->name}}
+            Actual category: {{$topic->category->name}}
+        </h5>
+        <h5 class="font-semibold text-xs text-gray-800 leading-tight">
+            Actual Tags: 
+            @forelse ($topic->tags as $tag)
+                {{$tag->name}}
+            @empty
+                There are no tags yet
+            @endforelse
         </h5>
     </x-slot>
 
