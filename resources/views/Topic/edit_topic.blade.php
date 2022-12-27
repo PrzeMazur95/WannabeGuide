@@ -20,6 +20,22 @@
                     <div class="relative z-0 mb-6 w-full group">
                         <textarea id="description" name="description" rows="4" class=" block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write something about it..." required>{{ $topic->description }}</textarea>
                     </div>
+                    <select id="category" name="category_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Chose new category</option>
+                        @foreach ($categories as $category)
+                            <option>{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                      <div class="mt-5">
+                          <select id="tag" name="tags_id[]" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-2/6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" multiple >
+                              <option disabled="disabled">Choose new tags from below: </option>
+                              @forelse ($tags as $tag)
+                                  <option id="{{ $tag->id }}" name="tag_id" value="{{$tag->id}}">{{$tag->name}}</option>
+                              @empty
+                                  <option>There are no tags</option>
+                              @endforelse
+                          </select>
+                      </div>
                     <x-button class="ml-3">
                     {{ __('Submit') }}
                     </x-button>
