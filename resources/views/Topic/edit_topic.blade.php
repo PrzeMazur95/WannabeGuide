@@ -3,6 +3,9 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Edit this topic: ') }}{{$topic->name}}
         </h2>
+        <h5 class="font-semibold text-xs text-gray-800 leading-tight">
+            {{ __('Actual category: ') }}{{$topic->category->name}}
+        </h5>
     </x-slot>
 
     <div class="py-12">
