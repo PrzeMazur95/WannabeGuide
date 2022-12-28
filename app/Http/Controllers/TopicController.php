@@ -136,6 +136,11 @@ class TopicController extends Controller
 
             $topic->update($request->validated());
 
+            if ($request->tags_id) {
+
+                $this->tagService->attachTagsToTopic($topic, $request->tags_id);
+            }
+
         } catch (\Exception $e) {
 
             $this->logger::error(LoggerMessages::ERROR_UPDATE_TOPIC->value, ['error' => $e->getMessage()]);
