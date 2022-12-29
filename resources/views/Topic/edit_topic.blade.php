@@ -47,8 +47,8 @@
                               @endforelse
                           </select>
                       </div>
-                    <x-button class="ml-3">
-                    {{ __('Submit') }}
+                    <x-button class="mt-5 w-1/6">
+                            {{ __('Submit') }}
                     </x-button>
                 </form>
                 </div>
