@@ -114,7 +114,13 @@ class TopicController extends Controller
      */
     public function edit(Topic $topic): View
     {
-        return view('Topic/edit_topic', ['topic' => $topic]);
+        return view(
+            'Topic/edit_topic', [
+            'topic' => $topic, 
+            'categories'=>$this->categories->all(), 
+            'tags'=>$this->tag->all()
+            ]
+        );
     }
 
     /**
@@ -129,6 +135,11 @@ class TopicController extends Controller
         try {
 
             $topic->update($request->validated());
+
+            if ($request->tags_id) {
+
+                $this->tagService->attachTagsToTopic($topic, $request->tags_id);
+            }
 
         } catch (\Exception $e) {
 

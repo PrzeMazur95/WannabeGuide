@@ -41,4 +41,14 @@ class Topic extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    /**
+     * Relation between topic and category
+     *
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

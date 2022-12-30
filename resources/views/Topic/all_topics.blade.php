@@ -17,8 +17,8 @@
              <span class="font-medium">{{ Session::get('TOPIC_UPDATED')}}</span>
         </div>
     @endif
-    @foreach($topics as $topic)
-     <div class="py-2">
+    @forelse ($topics as $topic)
+    <div class="py-2">
         <a href="{{ url('topics/'.$topic->id) }}">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -29,5 +29,15 @@
             </div>
         </a>
     </div>
-    @endforeach
+    @empty
+    <div class="py-2">
+         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                 <div class="p-6 bg-white border-b border-gray-200">
+                     There are no topics yet
+                 </div>
+             </div>
+         </div>
+    </div>
+    @endforelse
 </x-app-layout>
