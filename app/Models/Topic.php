@@ -32,7 +32,7 @@ class Topic extends Model
     /**
      * Relation between topic and User
      *
-     * @return relationship
+     * @return BelongsTo
      */
     public function user(): BelongsTo
     {
