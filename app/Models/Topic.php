@@ -15,6 +15,11 @@ class Topic extends Model
 {
     use HasFactory;
 
+    /**
+     * Fields which could be mass saved
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'category',
