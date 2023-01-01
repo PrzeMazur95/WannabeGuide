@@ -13,6 +13,8 @@ class BaseController extends Controller
 
     /**
      * Set up logger as a DI, to log errors
+     * 
+     * @param Log $logger
      */
     public function __construct(private Log $logger)
     {
