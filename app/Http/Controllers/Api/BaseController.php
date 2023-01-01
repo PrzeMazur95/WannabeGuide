@@ -30,6 +30,5 @@ class BaseController extends Controller
     public function catch($e, $loggerMsg): void
     {
         $this->logger::error($loggerMsg, ['error' => $e->getMessage()]);
-
     }
 }
