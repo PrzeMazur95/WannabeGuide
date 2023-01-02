@@ -45,7 +45,6 @@ class CategoryController extends BaseController
             return response()->json($this->category::all());
 
         } catch (\Exception $e) {
-
             $this->catch($e, LoggerMessages::ERROR_GET_ALL_CATEGORIES->value);
 
             return response()->json(RestResponses::ERROR_GET_ALL_CATEGORIES, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
@@ -63,6 +62,7 @@ class CategoryController extends BaseController
     {
         try{
             $this->category->create($request->validated());
+
         } catch (\Exception $e) {
             $this->catch($e, LoggerMessages::ERROR_NEW_CATEGORY_ADD->value);
 
@@ -82,9 +82,10 @@ class CategoryController extends BaseController
     {
         try {
             return response()->json($this->category::find($request->id));
+            
         }catch (\Exception $e)  {
-
             $this->catch($e, LoggerMessages::ERROR_SHOW_SPECIFIC_CATEGORY->value);
+
             return response()->json(RestResponses::ERROR_ADD_NEW_CATEGORY, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
         }
         
@@ -98,19 +99,14 @@ class CategoryController extends BaseController
      */
     public function destroy(DeleteRequest $request): JsonResponse
     {
-        
         if ($this->categoryService->ifUserIsAnOwnerOfGivenCategory($request->id, $request->user_id)) {
-
             return response()->json(RestResponses::USER_IS_NOT_AN_OWNER_OF_THIS_CATEGORY, $this->responseCode::HTTP_UNAUTHORIZED);
-            
         } else {
-
             try{
-
                 $this->category::find($request->id)->delete();
             } catch (\Exception $e){
-
                 $this->catch($e, LoggerMessages::ERROR_DELETE_SPECIFIC_CATEGORY->value);
+
                 return response()->json(RestResponses::ERROR_DELETE_CATEGORY, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
             }
 
