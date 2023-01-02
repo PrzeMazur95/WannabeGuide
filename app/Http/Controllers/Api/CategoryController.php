@@ -12,7 +12,6 @@ use App\Enum\Api\LoggerMessages;
 use App\Enum\Api\RestResponses;
 use App\Models\Category;
 use App\Services\CategoryService;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
