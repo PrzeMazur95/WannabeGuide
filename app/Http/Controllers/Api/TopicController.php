@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Api\Topic\StoreRequest;
 use App\Http\Requests\Api\Topic\ShowRequest;
 use App\Http\Requests\Api\Topic\UpdateRequest;
