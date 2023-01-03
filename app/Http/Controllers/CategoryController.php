@@ -31,9 +31,9 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('Category/all_categories', ['categories' => $this->category::all()]);
     }
