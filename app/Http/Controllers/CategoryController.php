@@ -29,7 +29,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display view with all available categories.
      *
      * @return View
      */
