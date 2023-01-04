@@ -73,7 +73,7 @@ class CategoryController extends Controller
     /**
      * Display all topicd belongs to specific category.
      *
-     * @param  int  $id
+     * @param  Category $category
      * @return View
      */
     public function show(Category $category): View
