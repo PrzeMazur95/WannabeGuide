@@ -52,9 +52,9 @@ class CategoryController extends Controller
      * Store a newly created category in storage.
      *
      * @param  StoreRequest  $request
-     * @return RedirectResponse
+     * @return View
      */
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(StoreRequest $request): View
     {
         try{
             $this->category->create($request->validated());
@@ -63,10 +63,12 @@ class CategoryController extends Controller
 
             $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_CATEGORY->value, ['error' => $e->getMessage()]);
 
-            return back()->with('db_error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB->value);
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
         }
 
-        return redirect()->route('category.all')->with(SessionMessages::CATEGORY_ADDED->name, SessionMessages::CATEGORY_ADDED->value);
+        $request->session()->flash(SessionMessages::CATEGORY_ADDED->name, SessionMessages::CATEGORY_ADDED->value);
+
+        return view('Category/all_categories', ['categories' => $this->category::all()]);
 
     }
 
