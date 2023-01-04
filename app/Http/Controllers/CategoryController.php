@@ -97,9 +97,9 @@ class CategoryController extends Controller
      *
      * @param  UpdateRequest  $request
      * @param  Category  $category
-     * @return RedirectResponse
+     * @return View
      */
-    public function update(UpdateRequest $request, Category $category): RedirectResponse
+    public function update(UpdateRequest $request, Category $category): View
     {
         try {
 
@@ -115,8 +115,7 @@ class CategoryController extends Controller
 
         $request->session()->flash(SessionMessages::CATEGORY_UPDATED->name, SessionMessages::CATEGORY_UPDATED->value);
 
-        return redirect()->route('category.all');
-        
+        return view('Category/all_categories', ['categories' => $this->category::all()]);
     }
 
     /**
