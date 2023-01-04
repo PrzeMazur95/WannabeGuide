@@ -123,9 +123,9 @@ class CategoryController extends Controller
      *
      * @param  Category  $category
      * @param Request $request
-     * @return RedirectResponse
+     * @return View
      */
-    public function destroy(Category $category, Request $request): RedirectResponse
+    public function destroy(Category $category, Request $request): View
     {
         try{
             $category->delete();
@@ -139,6 +139,6 @@ class CategoryController extends Controller
 
         $request->session()->flash(SessionMessages::CATEGORY_DELETED->name, SessionMessages::CATEGORY_DELETED->value);
 
-        return redirect()->route('category.all');
+        return view('Category/all_categories', ['categories' => $this->category::all()]);
     }
 }
