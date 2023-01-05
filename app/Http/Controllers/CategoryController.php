@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -27,11 +29,11 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display view with all available categories.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('Category/all_categories', ['categories' => $this->category::all()]);
     }
@@ -50,9 +52,9 @@ class CategoryController extends Controller
      * Store a newly created category in storage.
      *
      * @param  StoreRequest  $request
-     * @return RedirectResponse
+     * @return View
      */
-    public function store(StoreRequest $request): RedirectResponse
+    public function store(StoreRequest $request): View
     {
         try{
             $this->category->create($request->validated());
@@ -61,17 +63,19 @@ class CategoryController extends Controller
 
             $this->logger::error(LoggerMessages::ERROR_SAVE_NEW_CATEGORY->value, ['error' => $e->getMessage()]);
 
-            return back()->with('db_error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB->value);
+            return view('Error/error')->with('error', ErrorMessages::SMTH_WENT_WRONG_WITH_DB);
         }
 
-        return redirect()->route('category.all')->with(SessionMessages::CATEGORY_ADDED->name, SessionMessages::CATEGORY_ADDED->value);
+        $request->session()->flash(SessionMessages::CATEGORY_ADDED->name, SessionMessages::CATEGORY_ADDED->value);
+
+        return view('Category/all_categories', ['categories' => $this->category::all()]);
 
     }
 
     /**
      * Display all topicd belongs to specific category.
      *
-     * @param  int  $id
+     * @param  Category $category
      * @return View
      */
     public function show(Category $category): View
@@ -95,9 +99,9 @@ class CategoryController extends Controller
      *
      * @param  UpdateRequest  $request
      * @param  Category  $category
-     * @return RedirectResponse
+     * @return View
      */
-    public function update(UpdateRequest $request, Category $category): RedirectResponse
+    public function update(UpdateRequest $request, Category $category): View
     {
         try {
 
@@ -113,8 +117,7 @@ class CategoryController extends Controller
 
         $request->session()->flash(SessionMessages::CATEGORY_UPDATED->name, SessionMessages::CATEGORY_UPDATED->value);
 
-        return redirect()->route('category.all');
-        
+        return view('Category/all_categories', ['categories' => $this->category::all()]);
     }
 
     /**
@@ -122,9 +125,9 @@ class CategoryController extends Controller
      *
      * @param  Category  $category
      * @param Request $request
-     * @return RedirectResponse
+     * @return View
      */
-    public function destroy(Category $category, Request $request): RedirectResponse
+    public function destroy(Category $category, Request $request): View
     {
         try{
             $category->delete();
@@ -138,6 +141,6 @@ class CategoryController extends Controller
 
         $request->session()->flash(SessionMessages::CATEGORY_DELETED->name, SessionMessages::CATEGORY_DELETED->value);
 
-        return redirect()->route('category.all');
+        return view('Category/all_categories', ['categories' => $this->category::all()]);
     }
 }

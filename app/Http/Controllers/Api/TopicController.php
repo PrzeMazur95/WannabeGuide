@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\Api\Topic\StoreRequest;
 use App\Http\Requests\Api\Topic\ShowRequest;
 use App\Http\Requests\Api\Topic\UpdateRequest;
@@ -36,7 +35,7 @@ class TopicController extends Controller
         private Log $logger,
         private UserService $UserService,
         private TopicService $TopicService
-    ){
+    ) {
     }
 
     /**
@@ -57,7 +56,7 @@ class TopicController extends Controller
             return response()->json(RestResponses::ERROR_GET_ALL_TOPICS, $this->responseCode::HTTP_INTERNAL_SERVER_ERROR);
 
         }
-        if(!$allTopics->all()) {
+        if (!$allTopics->all()) {
             
             return response()->json(RestResponses::TOPICS_NOT_FOUND, $this->responseCode::HTTP_OK);
         }
@@ -85,7 +84,7 @@ class TopicController extends Controller
             
         }
         
-        return response()->json(RestResponses::NEW_TOPIC_HAS_BEEN_ADDED, $this->responseCode::HTTP_CREATED);  
+        return response()->json(RestResponses::NEW_TOPIC_HAS_BEEN_ADDED, $this->responseCode::HTTP_CREATED);
         
     }
 
@@ -108,7 +107,7 @@ class TopicController extends Controller
             return response()->json(RestResponses::ERROR_GET_SPECIFIC_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
         }
 
-        if(!$topic->first()){
+        if (!$topic->first()) {
 
             return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
         }
@@ -128,7 +127,7 @@ class TopicController extends Controller
 
             $topic = $this->topic::find($request->topic_id);
 
-            if(!$topic){
+            if (!$topic) {
 
                 return response()->json(RestResponses::TOPIC_NOT_FOUND, $this->responseCode::HTTP_NOT_FOUND);
             }
@@ -155,7 +154,7 @@ class TopicController extends Controller
     {
         if (!$this->UserService->checkIfUserIsAnOwnerOfSpecificTopic($request->user_id, $request->id) ) {
 
-            return response()->json(RestResponses::USER_IS_NOT_AN_OWNER, $this->responseCode::HTTP_NOT_FOUND);            
+            return response()->json(RestResponses::USER_IS_NOT_AN_OWNER, $this->responseCode::HTTP_NOT_FOUND);
         }
         
         try {
@@ -169,7 +168,5 @@ class TopicController extends Controller
 
             return response()->json(RestResponses::ERROR_DELETE_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
         }
-        
-
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,6 +15,11 @@ class Topic extends Model
 {
     use HasFactory;
 
+    /**
+     * Fields which could be mass saved
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'category',
@@ -25,7 +32,7 @@ class Topic extends Model
     /**
      * Relation between topic and User
      *
-     * @return relationship
+     * @return BelongsTo
      */
     public function user(): BelongsTo
     {

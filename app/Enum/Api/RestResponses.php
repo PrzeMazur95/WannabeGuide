@@ -12,7 +12,7 @@ enum RestResponses: string
     case TOPIC_HAS_BEEN_DELETED = 'Topic has been succesfully deleted!';
 
     case ERROR_ADD_NEW_TOPIC = 'Something went wrong when adding new topic, please try one more time, or contact with admin';
-    case ERROR_GET_ALL_POSTS = 'Something went wrong when trying to see all topics, please try one more time, or contact with admin';
+    case ERROR_GET_ALL_TOPICS = 'Something went wrong when trying to see all topics, please try one more time, or contact with admin';
     case ERROR_GET_SPECIFIC_TOPIC = 'Something went wrong when trying to see typed topic, please try one more time, or contact with admin';
     case ERROR_UPDATE_TOPIC = 'Something went wrong when trying to update typed topic, please try one more time, or contact with admin';
     case ERROR_DELETE_TOPIC = 'Something went wrong when trying to delete typed topic, please try one more time, or contact with admin';
