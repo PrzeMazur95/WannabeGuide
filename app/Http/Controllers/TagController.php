@@ -54,7 +54,7 @@ class TagController extends Controller
      *
      * @return View
      */
-    public function create(Request $request): View
+    public function create(): View
     {
         return view('Tag/new_tag');
     }
