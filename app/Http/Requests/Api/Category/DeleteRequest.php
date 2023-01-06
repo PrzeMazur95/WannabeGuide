@@ -30,7 +30,12 @@ class DeleteRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /**
+     * Returned messages when validation went wrong
+     *
+     * @return array
+     */
+    public function messages(): array
     {
         return [
             'id.required' => RestRequestValidation::CATEGORY_ID_IS_REQUIRED->value,
