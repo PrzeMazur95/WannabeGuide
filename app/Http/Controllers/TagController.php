@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use App\Enum\SessionMessages;
 use App\Http\Requests\Tag\StoreRequest;
-use App\Http\Requests\Tag\DeleteRequest;
 
 class TagController extends Controller
 {
@@ -66,7 +65,7 @@ class TagController extends Controller
      * @param DeleteRequest $request
      * @return View
      */
-    public function destroy(Tag $tag, DeleteRequest $request): View
+    public function destroy(Tag $tag): View
     {
         try{ 
             $tag->topics()->detach();
