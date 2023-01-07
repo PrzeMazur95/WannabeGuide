@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\Topic;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Enum\Api\RestRequestValidation;
 
 class UpdateRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdateRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -19,9 +20,9 @@ class UpdateRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => ['required', 'string'],
@@ -37,7 +38,7 @@ class UpdateRequest extends FormRequest
      *
      * @return array
      */
-    public function messages()
+    public function messages(): array
     {
         return [
             'name.required' => RestRequestValidation::NAME_IS_REQUIRED->value,
