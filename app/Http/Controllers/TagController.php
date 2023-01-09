@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Enum\ErrorMessages;
 use App\Enum\LoggerMessages;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 use App\Enum\SessionMessages;
 use App\Http\Requests\Tag\StoreRequest;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -54,7 +54,7 @@ class TagController extends Controller
      *
      * @return View
      */
-    public function create(Request $request): View
+    public function create(): View
     {
         return view('Tag/new_tag');
     }
@@ -63,6 +63,7 @@ class TagController extends Controller
      * Remove the specified tag from storage.
      *
      * @param Tag $tag
+     * @param DeleteRequest $request
      * @return View
      */
     public function destroy(Tag $tag, Request $request): View
