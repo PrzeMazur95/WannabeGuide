@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make("password"),
             ]
         );
+        Tag::factory(1)->create();
+        Topic::factory()->has(Tag::factory()->count(2))->create();
     }
 }
