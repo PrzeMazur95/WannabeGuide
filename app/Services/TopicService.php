@@ -6,29 +6,30 @@ use App\Enum\Api\LoggerMessages;
 use Illuminate\Support\Facades\Log;
 use App\Models\Topic;
 
-class TopicService {
-
+class TopicService
+{
     /**
-     *
+     * Dependency injection
+     * 
      * @param Topic $topic
      * @param Log $logger
      */
     public function __construct(
         private Topic $topic,
         private Log $logger
-    ){
+    ) { 
     }
 
     /**
      * Method to check is specified topic exists
      *
      * @param integer $topic_id
-     * @return void
+     * @return bool
      */
-    public function checkIfExists(int $topic_id)
+    public function checkIfExists(int $topic_id): bool
     {
         try{
-            if(!$this->topic::find($topic_id)){
+            if (!$this->topic::find($topic_id)) {
                 return false;
             } 
     
@@ -39,6 +40,5 @@ class TopicService {
 
             return false;
         }
-
     }
 }
