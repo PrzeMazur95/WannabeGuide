@@ -8,12 +8,18 @@ use App\Models\Category;
 use App\Models\User;
 
 
-class CategoryService {
-
+class CategoryService
+{
+    /**
+     * Dependency injection
+     *
+     * @param Category $category
+     * @param User $user
+     */
     public function __construct(
         private Category $category,
         private User $user
-    ){
+    ) {
     }
 
     /**
