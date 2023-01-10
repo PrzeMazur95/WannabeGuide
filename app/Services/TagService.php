@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
-class TagService {
-
+class TagService
+{
     /**
      * Method attaching tags to a given topic
      *
@@ -16,7 +16,6 @@ class TagService {
      */
     public function attachTagsToTopic($topic, $tags_id): void
     {
-
         $topic->tags()->sync($tags_id);
     }
 }
