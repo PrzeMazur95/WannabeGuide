@@ -7,9 +7,10 @@ use App\Enum\Api\LoggerMessages;
 use Illuminate\Support\Facades\Log;
 use App\Models\Topic;
 
-class UserService {
-
+class UserService
+{
     /**
+     * Dependency injection
      *
      * @param User $user
      * @param Topic $topic
@@ -31,7 +32,7 @@ class UserService {
     public function checkIfExists(int $user_id)
     {
         try{
-            if(!$this->user::find($user_id)){
+            if (!$this->user::find($user_id)) {
                 return false;
             } 
     
@@ -42,7 +43,6 @@ class UserService {
 
             return false;
         }
-
     }
 
     /**
@@ -52,9 +52,9 @@ class UserService {
      * @param int $topic
      * @return void
      */
-    public function checkIfUserIsAnOwnerOfSpecificTopic(int $user_id, int $topic){
-
-        if($this->topic::find($topic)->user_id === $user_id){
+    public function checkIfUserIsAnOwnerOfSpecificTopic(int $user_id, int $topic) 
+    {
+        if ($this->topic::find($topic)->user_id === $user_id) {
 
             return true;
         } else {
