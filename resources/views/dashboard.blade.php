@@ -23,4 +23,14 @@
   <div class="col-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 ...">02</div>
   <div class="row-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-2 sm:px-6 lg:px-8 p-6 mx-2 ...">03</div>
 </div>
+@section('script')
+<script>
+    $(document).ready(function() {
+        $(document).on('keyup', '#topic-search', function (e) {
+            e.preventDefault();
+            alert($( this ).val());
+        });
+    });
+</script>
+@endsection
 </x-app-layout>
