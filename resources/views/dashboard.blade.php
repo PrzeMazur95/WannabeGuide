@@ -27,8 +27,25 @@
 <script>
     $(document).ready(function() {
         $(document).on('keyup', '#topic-search', function (e) {
-            e.preventDefault();
-            alert($( this ).val());
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url:"/topicsSearch",
+                data:{'search':$( this ).val()},
+                success: function (response) {
+                    if(response.length > 0){
+                        for( let i = 0; i < response.length; i++){
+                        console.log(response[i]['name']);       
+                        }
+                    } else {
+                        console.log('There is no topic including this phrase');
+                    }
+                }
+            });
         });
     });
 </script>
