@@ -18,7 +18,6 @@ use App\Enum\SessionMessages;
 use Illuminate\View\View;
 use App\Services\TagService;
 use Illuminate\Database\Eloquent\Collection;
-use PhpParser\Node\Expr\Cast\Array_;
 
 class TopicController extends Controller
 {
