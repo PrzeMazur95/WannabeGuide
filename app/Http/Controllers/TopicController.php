@@ -185,13 +185,18 @@ class TopicController extends Controller
      * Method that return specific topic searched by user by typed phrase on dashboard page
      *
      * @param Request $request
-     * @return Collection
+     * @return Collection|Bool
      */
-    public function search(Request $request): Collection
+    public function search(Request $request): Collection|Bool
     {
-        $topics = Topic::where('name', 'Like', '%'.$request->search.'%')
-        ->orWhere('description', 'Like', '%'.$request->search.'%')->get();
-
-        return $topics;
+        if (empty($request->search)) {
+            
+            return null;
+        } else {
+            $topics = $this->topic::where('name', 'Like', '%'.$request->search.'%')
+                ->orWhere('description', 'Like', '%'.$request->search.'%')->get();
+    
+            return $topics;
+        }
     }
 }
