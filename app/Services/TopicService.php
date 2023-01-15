@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enum\Api\LoggerMessages;
 use Illuminate\Support\Facades\Log;
 use App\Models\Topic;
+use Illuminate\Database\Eloquent\Collection;
 
 class TopicService
 {
@@ -40,5 +41,17 @@ class TopicService
 
             return false;
         }
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param string $phrase
+     * @return Collection
+     */
+    public function findSearchingTopics($phrase): Collection
+    {
+        return $this->topic::where('name', 'Like', '%'.$phrase.'%')
+            ->orWhere('description', 'Like', '%'.$phrase.'%')->get();
     }
 }
