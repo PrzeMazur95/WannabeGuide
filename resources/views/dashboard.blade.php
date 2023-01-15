@@ -27,56 +27,56 @@
         <div class="col-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 ...">02</div>
         <div class="row-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-2 sm:px-6 lg:px-8 p-6 mx-2 ...">03</div>
     </div>
-@section('script')
-<script>
-    $(document).ready(function() {
-        $(document).on('keyup', '#topic-search', function (e) {
-            $('#statistics').hide();
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $('#topicSearchResults').empty();
-            $.ajax({
-                type: "GET",
-                url:"/topicsSearch",
-                data:{'search':$(this).val()},
-                success: function (response) {
-                    if(response.length > 0){
-                        for( let i = 0; i < response.length; i++){   
+    @section('script')
+    <script>
+        $(document).ready(function() {
+            $(document).on('keyup', '#topic-search', function (e) {
+                $('#statistics').hide();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $('#topicSearchResults').empty();
+                $.ajax({
+                    type: "GET",
+                    url:"/topicsSearch",
+                    data:{'search':$(this).val()},
+                    success: function (response) {
+                        if(response.length > 0){
+                            for( let i = 0; i < response.length; i++){   
+                                $('#topicSearchResults').append(
+                                    '<a href="some_url">'+
+                                        '<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">'+
+                                            '<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">'+
+                                                '<div id="test" class="p-6 bg-white border-b border-gray-200">'+
+                                                    response[i]['name']+
+                                                '</div>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    '</a>'
+                                );
+                            }
+                        } else if (!response){
+                            $('#topicSearchResults').empty();
+                            $('#statistics').show();
+                        } else {
                             $('#topicSearchResults').append(
                                 '<a href="some_url">'+
                                     '<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">'+
                                         '<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">'+
-                                            '<div id="test" class="p-6 bg-white border-b border-gray-200">'+
-                                                response[i]['name']+
+                                            '<div id="noTopicsFound" class="p-6 bg-red-100 border-b border-gray-200">'+
+                                                'There is no topic including this phrase'+
                                             '</div>'+
                                         '</div>'+
                                     '</div>'+
                                 '</a>'
                             );
                         }
-                    } else if (!response){
-                        $('#topicSearchResults').empty();
-                        $('#statistics').show();
-                    } else {
-                        $('#topicSearchResults').append(
-                            '<a href="some_url">'+
-                                '<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">'+
-                                    '<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">'+
-                                        '<div id="noTopicsFound" class="p-6 bg-red-100 border-b border-gray-200">'+
-                                            'There is no topic including this phrase'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</a>'
-                        );
                     }
-                }
+                });
             });
         });
-    });
-</script>
-@endsection
+    </script>
+    @endsection
 </x-app-layout>
