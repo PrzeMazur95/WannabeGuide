@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="pt-12 pb-6">
+    <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                  <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -22,15 +22,16 @@
         <div class="mb-6" id="topicSearchResults">
         </div>
     </div>
-    <div class="grid grid-rows-3 grid-flow-col gap-4">
-  <div class="row-span-3 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 ...">01</div>
-  <div class="col-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 ...">02</div>
-  <div class="row-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-2 sm:px-6 lg:px-8 p-6 mx-2 ...">03</div>
-</div>
+    <div class="grid grid-rows-3 grid-flow-col gap-4" id="statistics">
+        <div class="row-span-3 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 ...">01</div>
+        <div class="col-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 ...">02</div>
+        <div class="row-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-2 sm:px-6 lg:px-8 p-6 mx-2 ...">03</div>
+    </div>
 @section('script')
 <script>
     $(document).ready(function() {
         $(document).on('keyup', '#topic-search', function (e) {
+            $('#statistics').hide();
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -58,6 +59,7 @@
                         }
                     } else if (!response){
                         $('#topicSearchResults').empty();
+                        $('#statistics').show();
                     } else {
                         $('#topicSearchResults').append(
                             '<a href="some_url">'+
