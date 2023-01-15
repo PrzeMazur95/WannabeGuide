@@ -17,6 +17,7 @@ use App\Enum\ErrorMessages;
 use App\Enum\SessionMessages;
 use Illuminate\View\View;
 use App\Services\TagService;
+use App\Services\TopicService;
 use Illuminate\Database\Eloquent\Collection;
 
 class TopicController extends Controller
@@ -28,7 +29,8 @@ class TopicController extends Controller
         private Log $logger,
         private Auth $auth,
         private Tag $tag,
-        private TagService $tagService
+        private TagService $tagService,
+        private TopicService $topicService
     ) {
     }
 
@@ -190,11 +192,10 @@ class TopicController extends Controller
     {
         if (empty($request->search)) {
             
-            return null;
+            return false;
         } else {
-            $topics = $this->topic::where('name', 'Like', '%'.$request->search.'%')
-                ->orWhere('description', 'Like', '%'.$request->search.'%')->get();
-    
+            $topics = $this->topicService->findSearchingTopics($request->search);
+
             return $topics;
         }
     }
