@@ -1,8 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            {{ __('Here we have all tags') }}
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            List of all tags
         </h2>
+        <h3>We have: {{$tags->count()}}</h3>
     </x-slot>
     <x-slot name="slot">
         @if(Session::has('TAG_DELETED'))
