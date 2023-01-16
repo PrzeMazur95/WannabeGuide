@@ -11,37 +11,37 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-1 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-7 sm:flex">
                     <x-nav-link :href="route('topics.all')" :active="request()->routeIs('topics.all')">
                         {{ __('All Topics') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('category.all')" :active="request()->routeIs('categry.all')">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
+                    <x-nav-link :href="route('category.all')" :active="request()->routeIs('category.all')">
                         {{ __('All Categories') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('tags.all')" :active="request()->routeIs('tags.all')">
                         {{ __('All Tags') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('topics.create')" :active="request()->routeIs('topics.create')">
                         {{ __('Add topic') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
                         {{ __('Add category') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                     <x-nav-link :href="route('tags.create')" :active="request()->routeIs('tags.create')">
                         {{ __('Add tag') }}
                     </x-nav-link>
