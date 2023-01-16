@@ -36,6 +36,8 @@ Route::middleware('auth')->group( function () {
             Route::delete('/topics/{topic}', 'destroy')->name('topics.delete');
             //route to edit specific topic
             Route::patch('/topics/{topic}', 'edit')->name('topics.edit');
+            //route to search for specific topic by ajax call
+            Route::get('/topicsSearch', 'search')->name('topics.search');
         }
     );
     Route::controller(CategoryController::class)->group(

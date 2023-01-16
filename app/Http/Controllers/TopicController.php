@@ -17,6 +17,8 @@ use App\Enum\ErrorMessages;
 use App\Enum\SessionMessages;
 use Illuminate\View\View;
 use App\Services\TagService;
+use App\Services\TopicService;
+use Illuminate\Database\Eloquent\Collection;
 
 class TopicController extends Controller
 {
@@ -27,7 +29,8 @@ class TopicController extends Controller
         private Log $logger,
         private Auth $auth,
         private Tag $tag,
-        private TagService $tagService
+        private TagService $tagService,
+        private TopicService $topicService
     ) {
     }
 
@@ -177,5 +180,25 @@ class TopicController extends Controller
         $request->session()->flash(SessionMessages::TOPIC_DELETED->name, SessionMessages::TOPIC_DELETED->value);
 
         return view('Topic/all_topics', ['topics'=>$this->topic::all()]);
+    }
+
+    /**
+     * Method that return specific topic searched by user by typed phrase on dashboard page
+     *
+     * @param Request $request
+     * @return Collection|Bool
+     */
+    public function search(Request $request): Collection|Bool
+    {
+        if (empty($request->search)) {
+            
+            return false;
+        } else {
+            if (!$topics = $this->topicService->findSearchingTopics($request->search)) {
+                return false;
+            }
+
+            return $topics;
+        }
     }
 }
