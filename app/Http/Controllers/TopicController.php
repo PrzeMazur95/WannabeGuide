@@ -194,7 +194,9 @@ class TopicController extends Controller
             
             return false;
         } else {
-            $topics = $this->topicService->findSearchingTopics($request->search);
+            if (!$topics = $this->topicService->findSearchingTopics($request->search)) {
+                return false;
+            }
 
             return $topics;
         }
