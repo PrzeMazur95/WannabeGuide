@@ -103,8 +103,28 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('category.all')" :active="request()->routeIs('category.all')">
+                {{ __('Categories') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('tags.all')" :active="request()->routeIs('tags.all')">
+                {{ __('Tags') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('topics.create')" :active="request()->routeIs('topics.create')">
-                {{ __('Add new!') }}
+                {{ __('Add topic!') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('category.create')" :active="request()->routeIs('category.create')">
+                {{ __('Add category!') }}
+            </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('tags.create')" :active="request()->routeIs('tags.create')">
+                {{ __('Add tag!') }}
             </x-responsive-nav-link>
         </div>
 
