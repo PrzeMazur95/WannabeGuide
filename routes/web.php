@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
@@ -17,8 +18,7 @@ use App\Http\Controllers\TagController;
 */
 
 Route::middleware('auth')->group( function () {
-
-    Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+    Route::get('dashboard', [Controller::class, 'dashboard'])->name('dashboard');
 
     Route::controller(TopicController::class)->group(
         function () { 

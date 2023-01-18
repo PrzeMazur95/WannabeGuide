@@ -23,9 +23,21 @@
         </div>
     </div>
     <div class="grid grid-rows-3 grid-flow-col gap-4" id="statistics">
-        <div class="row-span-3 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 ...">01</div>
-        <div class="col-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 ...">02</div>
-        <div class="row-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-2 sm:px-6 lg:px-8 p-6 mx-2 ...">03</div>
+        <div class="row-span-3 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 text-center...">
+            <div class="text-6xl text-center my-5">
+                We have
+            </div>
+            <div class="text-6xl text-center my-5">
+                {{ $topicsCount }}
+                <div class="text-6xl my-5 text-center">Topics</div>
+            </div>
+        </div>
+        <div class="row-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg col-span-2 sm:px-6 lg:px-8 p-6 mx-2 text-5xl text-center ...">
+            Also {{ $categoriesCount }} Categories
+        </div>
+        <div class="col-span-2 bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-6 lg:px-8 p-6 mx-2 text-4xl text-center ...">
+            And {{ $tagsCount }} Tags
+        </div>
     </div>
     @section('script')
     <script>
