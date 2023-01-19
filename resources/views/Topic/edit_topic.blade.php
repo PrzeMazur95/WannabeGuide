@@ -55,4 +55,18 @@
             </div>
         </div>
     </div>
+    @section('script')
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#description' ), {
+                toolbar: ['bold', 'italic']
+            })
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    <script>
+        Array.from( description.ui.componentFactory.names() );
+    </script>
+    @endsection
 </x-app-layout>
