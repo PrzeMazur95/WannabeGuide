@@ -140,6 +140,7 @@ class TopicController extends Controller
         try {
 
             $topic->update($request->validated());
+            $topic->update(['description' => $this->topicService->sanitizeDescripton($request->validated('description'))]);
 
             if ($request->tags_id) {
 
