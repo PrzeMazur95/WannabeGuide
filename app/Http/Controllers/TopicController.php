@@ -79,6 +79,8 @@ class TopicController extends Controller
 
             $topic = $this->topic->make($request->validated());
             $topic->user_id=$this->auth::user()->id;
+            $topic->description=$this->topicService
+                ->sanitizeDescripton($request->validated('description'));
             $topic->save();
             
             if ($request->tags_id) {
