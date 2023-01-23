@@ -79,6 +79,8 @@ class TopicController extends Controller
 
             $topic = $this->topic->make($request->validated());
             $topic->user_id=$this->auth::user()->id;
+            $topic->description=$this->topicService
+                ->sanitizeDescripton($request->validated('description'));
             $topic->save();
             
             if ($request->tags_id) {
@@ -138,6 +140,7 @@ class TopicController extends Controller
         try {
 
             $topic->update($request->validated());
+            $topic->update(['description' => $this->topicService->sanitizeDescripton($request->validated('description'))]);
 
             if ($request->tags_id) {
 

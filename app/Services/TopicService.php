@@ -61,4 +61,16 @@ class TopicService
             return false;
         }
     }
+
+    /**
+     * Sanitize given desciption from CKE editor, allow only specified tags as below
+     *
+     * @param String $description
+     * @return String
+     */
+    public function sanitizeDescripton($description): String
+    {
+        $toReplace = array("&lt;script&gt;", "&lt;/script&gt;");
+        return (str_replace($toReplace, "", strip_tags($description, '<b><i><strong><br><p>')));
+    }
 }
