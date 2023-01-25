@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::controller(TopicController::class)->group(function () {
+Route::controller(TopicController::class)->middleware(['auth:sanctum'])->group(function () {
     //route to see all existing topics
     Route::get('topics', 'index');
     //route to store new topic
@@ -34,7 +34,7 @@ Route::controller(TopicController::class)->group(function () {
 }
 );
 
-Route::controller(CategoryController::class)->group(function () {
+Route::controller(CategoryController::class)->middleware(['auth:sanctum'])->group(function () {
      //route to get all categories
      Route::get('categories', 'index');
      //route to store new category
