@@ -158,12 +158,12 @@ class TopicController extends Controller
         }
         
         try {
-            
-            $this->topic::find($request->id)->first()->delete();
+            $topic = $this->topic::find($request->id)->first();
+            $topic->tags()->detach();
+            $topic->delete();
 
             return response()->json(RestResponses::TOPIC_HAS_BEEN_DELETED, $this->responseCode::HTTP_NO_CONTENT);
         } catch (\Exception $e) {
-
             $this->logger::error(LoggerMessages::ERROR_DELETE_TOPIC->value, ['error' => $e->getMessage()]);
 
             return response()->json(RestResponses::ERROR_DELETE_TOPIC, $this->responseCode::HTTP_BAD_REQUEST);
