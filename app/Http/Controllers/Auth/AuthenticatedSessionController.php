@@ -32,7 +32,24 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $user = auth()->user();
+
+        if ($request->wantsJson()) {
+            return response()->json(
+                [
+                'success' => true,
+                'data' => [
+                    'token' => $user->createToken($user->name)->plainTextToken,
+                    'name' => $user->name,
+                ],
+                'message' => 'User logged in!. Use given token to make API calls.'
+                ]
+            );
+        } else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
+        
     }
 
     /**
