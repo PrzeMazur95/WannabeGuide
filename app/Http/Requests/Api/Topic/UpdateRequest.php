@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
         return [
             'name' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'category' => ['required', 'int'],
+            'category_id' => ['required', 'int'],
             'user_id' => ['required', 'int'],
             'topic_id' => ['required', 'int']
         ];

@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'unique:topics'],
             'description' => ['required', 'string'],
-            'category' => ['required', 'int'],
+            'category_id' => ['required', 'int'],
             'user_id' => ['required', 'int']
         ];
     }
