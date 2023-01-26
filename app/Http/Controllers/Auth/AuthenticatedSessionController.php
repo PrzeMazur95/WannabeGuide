@@ -67,6 +67,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        if ($request->wantsJson()) {
+            return response()->json(
+                [
+                'success' => true,
+                'message' => 'User logged out!. Please login to regenerate your token.'
+                ]
+            );
+        } else {
+            return redirect('/');
+        }
     }
 }
