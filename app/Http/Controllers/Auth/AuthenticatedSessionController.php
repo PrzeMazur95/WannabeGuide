@@ -41,6 +41,7 @@ class AuthenticatedSessionController extends Controller
                 'data' => [
                     'token' => $user->createToken($user->name)->plainTextToken,
                     'name' => $user->name,
+                    'id' => $user->id
                 ],
                 'message' => 'User logged in!. Use given token to make API calls.'
                 ]
