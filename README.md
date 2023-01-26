@@ -1,78 +1,144 @@
-## Steps to run project 
-* Run in console below commands
-    * docker-compose up -d
-    * npm install && npm watch dev && npm run dev
-    * php artisan serve
-    * type in terminal :
-        * "php artisan make:migrate" - to create tables
-        * type in terminal "php artisan db:seed"
-            ** you will have admin user with credentials : 
-             *** username: admin@example.com, password: password
-            ** also with some fake topics an categories at the beggining
-* Then go to 127.0.0.1:8000 to see home page
+## My laravel project, mainly for practice purpose. 
+
+* I use it myself like a book of topics, that I have to store somewhere :).
+    * We can create topics, categories and tags. Topic can belong to one category and have many tags. 
+    * We have CRUD for Topics and Categories. Only creating and deleting for tags.
+    * On dasboard page, we have search bar which through Ajax search for a topics. It search typed phrase in name and description fields in the database. 
+    * We have menu in navbar, where we can go to topics/categories/tags, and add or see them.
 
 
-## What is done
+## Steps to run project on your local machine - install docker if you do not have it.
 
-### Authorization with laravel Breeze
-### Used CKE Editor in create/update topic : https://ckeditor.com/docs/ckeditor5/latest/index.html
-### Topic model, migration, Api/Web controller, factory
-### api and web routes are grouped by its controller
+* Go to main folder WannabeGuide, on branch master, and in terminal type below commands : 
+    * composer install
+    * cp -a .env.example .env
+    * ./vendor/bin/sail up
+    * ./vendor/bin/sail artisan key:generate
+    * npm install && npm run dev
 
-### Api
- * All topics
-    * route to see all topics
-    * view page to render all topics
-    * route to edit specific topic
-    * route to delete specific topic
-    * route to create new topic
-    * all requests has their own validation
-
-* Overall
-    * Rest responses, and any messages are stored as enums, so they will be the same allways.
-
- ### Web
- * All topics
-    * route to see all topics
-    * view page to render all topics
-    * crud for topics
-    * all routes has their own validation
-    * if name exists in db, or it is some any other error, it will be show on page
-    * show flash pop up, when new topic has been added
-    * form data stays when added topic has the same name which is an error
-
-
- ### In progress
- * new topic
-    * added log info only in store api topic controller - done
-    * update update method in web controller, log, cache msg - done
-    * grab all mathods in try catch block - in web done, now api - done
-    * need to do tests to it, for web and for api, check if new topic exists, and pop-up is shown
-    * set that api request shuld have accept json, and content type the same
-    * all displayed tasks on all task grid are hrefs, create a form to show topic modal - done
-    * after click, modal page of specific post shuld be displayed - done
-
-* category model
-
+    * this is "clicking" step : in your browser go to phpmyadmin : 127.0.0.1:9000 - credentials are only username, without password
+        - username : root
+        - when you are logged in, create new db with name : "wannabeguide"
     
+    * And last two commands that we have to type in terminal : 
+
+    * ./vendor/bin/sail artisan migrate --seed
+    * ./vendor/bin/sail artisan serve
+
+* Then in your browser go to 127.0.0.1:8000, you will see login form. By seeding db we have example admin user :
+
+    * username: admin@example.com, password: password - use that credentals to login.
+
+    * We have seeded some basic topics, categories, and tags for the start.
+
+## What was practicing :
+* factories
+* seeders
+* migrations
+* enums
+* feature tests
+* relations : 
+    * hasMany, belongsToMany, belongsTo, ManyToMany
+* jquery, ajax
+* logging errors
+* form requests
+* api routes
+
+* plese check the code if you want to see more :) 
 
 
-_____
+## We have 26 basic feature test, type below command to check if everything is fine.
+* .vendor/bin/sail artisan test
 
-## To do 
- * CRUD for tasks - done in web - now api
- * add option to add photos to specific topic
- * refactor web and api controller - try catch block, to not be dry - some parent method
- * check in api if user exisits, and if topic is his own
- * categories, an relations between them and tasks
- * create a middleware for api, to protect from unauthorized requests
- * docker file
- * add new container to phpunit purpose
- * postman documentation
- * add log inforations in controllers - more specific log messages
- * create prefixes to logger like -web, api, in enums, instead of two the same enum files for each one
- * add dusk test cases for act like a user
- * add user factory, to have an admin on the begginign
- * edit update topic, add there choose new category
- * tag model doess not have any api methods
+## If you want to call to API endpoints, you have to generate Bearer token.
+* Go to "127.0.0.1:8000/login" in postman 
+    * In Header add key-value pair
+        * Accept - application/json
+    * In Body add key-value pairs
+        * email - admin@example.com
+        * password - password
+
+    Then you will get a message, that user is logged in with bearer token and its ID. 
+    Use this token in Auth section, with type of Bearer token.
+    Without it calling to API endpoints will be unauthenticated.
+    If somehow you will lost this key, hit below endpoint : 
+    127.0.0.1:8000/logout
+    Then repeat steps from hitting login endpoint. 
+
+
+## API Routes - I have created for practice purpose some API routes : 
+
+* In all request, in headers add key - value pairs :
+    * Content-Type => application/json
+    * Accept => application/json
+
+
+### In case with topics : 
+
+* GET - /api/topics - to get all topics
+
+* POST - /api/topics/store - to store a new topic
+    * in Body send raw JSON :
+    {
+    "name":"your topic name",                      (string in quotes)
+    "description":"your topic description",        (string in quotes)
+    "category_id":category_id_which_exists_in_db,  (int without quotes)
+    "user_id":your_user_id                         (int without quotes)
+    }     
+
+* GET - /api/topic - to get topic by id  
+    * in Body send raw JSON :
+    {
+    "id":id_of_existing_topic,                   (int without quotes)
+    }  
+
+* PATCH - /api/topic/update - to update specific topic
+    * in Body send raw JSON :
+    {  
+    "name":"updated_name",                       (string in quotes)
+    "description":"updated_description",         (string in quotes)
+    "category_id":new_but_existing_category_id,  (int without quotes)
+    "user_id":author_id_of_this_topic,           (int without quotes)
+    "topic_id":topic_id                          (int without quotes)
+    }  
+
+* DELETE - /api/topic/delete - to delete specific topic
+    * in Body send raw JSON :
+    {  
+    "id":topic_id,                       (int without quotes)
+    "user_id":author_id_of_this_topic,   (int without quotes)
+    } 
+
+### In case with categories : 
+
+* GET - /api/categories - to get all categories
+
+* POST - /api/category - to add a new category
+    * in Body send raw JSON :
+    {  
+    "name":"category_name",             (string in quotes)
+    "user_id":your_user_id,             (int without quotes)
+    }  
+
+* GET - /api/category - to show specific category
+    * in Body send raw JSON :
+    {  
+    "id":"existing_category_id"      (int without quotes)         
+    }  
+
+* DELETE - /api/category/delete - to delete specific category
+    * in Body send raw JSON :
+    {  
+    "id":existing_category_id,               (int without quotes) 
+    "user_id":author_id_of_this_category     (int without quotes)         
+    }  
+
+### Tags feature have no api routes. 
+
+## Additional informations
+* What packages have been used :
+  * Authorization with laravel Breeze
+  * Dockerize with laravel Sail
+  * CKE Editor in create/update topic pages : https://ckeditor.com/docs/ckeditor5/latest/index.html
+
 
