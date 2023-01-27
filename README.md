@@ -78,7 +78,7 @@
 * GET - /api/topics - to get all topics
 
 * POST - /api/topics/store - to store a new topic
-    * in Body send raw JSON :
+    * in Body send raw JSON : <br />
     { <br />
     "name":"your topic name", <br />
     "description":"your topic description", <br />
@@ -87,51 +87,51 @@
     } <br />
 
 * GET - /api/topic - to get topic by id  
-    * in Body send raw JSON :
+    * in Body send raw JSON : <br />
     { <br />
     "id":id_of_existing_topic, <br />
     }  <br />
 
 * PATCH - /api/topic/update - to update specific topic
-    * in Body send raw JSON :
+    * in Body send raw JSON : <br />
     {  <br />
     "name":"updated_name", <br />
     "description":"updated_description", <br />
     "category_id":new_but_existing_category_id, <br />
     "user_id":author_id_of_this_topic, <br />
     "topic_id":topic_id <br />
-    }  <br />
+    } 
 
 * DELETE - /api/topic/delete - to delete specific topic
-    * in Body send raw JSON :
+    * in Body send raw JSON : <br />
     {  <br />
     "id":topic_id, <br />
     "user_id":author_id_of_this_topic, <br />
-    }  <br />
+    }
 
 ### In case with categories : 
 
 * GET - /api/categories - to get all categories
 
 * POST - /api/category - to add a new category
-    * in Body send raw JSON :
+    * in Body send raw JSON : <br />
     {  <br />
     "name":"category_name", <br />
     "user_id":your_user_id, <br />
-    }  <br />
+    }
 
 * GET - /api/category - to show specific category
-    * in Body send raw JSON :
+    * in Body send raw JSON : <br />
     {  <br />
-    "id":"existing_category_id"  <br />       
-    }  <br />
+    "id":"existing_category_id" <br /> 
+    }
 
 * DELETE - /api/category/delete - to delete specific category
-    * in Body send raw JSON :
+    * in Body send raw JSON : <br />
     {  <br />
     "id":existing_category_id, <br />
-    "user_id":author_id_of_this_category  <br />       
-    }  <br />
+    "user_id":author_id_of_this_category <br />  
+    }
 
 ### Tags feature have no api routes. 
 
