@@ -21,8 +21,7 @@ class TopicControllerTest extends TestCase
     {
         $topic = Topic::factory()->create();
 
-        $response = $this->getJson('api/topics');
-        // dd($response);
+        $response = $this->actingAs($this->authUser())->getJson('api/topics');
 
         $response->assertStatus(200);
         $this->assertDatabaseHas('topics', [
