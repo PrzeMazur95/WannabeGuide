@@ -79,35 +79,35 @@
 
 * POST - /api/topics/store - to store a new topic
     * in Body send raw JSON :
-    {
-    "name":"your topic name",
-    "description":"your topic description",
-    "category_id":category_id_which_exists_in_db,
-    "user_id":your_user_id
-    }     
+    { <br />
+    "name":"your topic name", <br />
+    "description":"your topic description", <br />
+    "category_id":category_id_which_exists_in_db, <br />
+    "user_id":your_user_id <br />
+    } <br />
 
 * GET - /api/topic - to get topic by id  
     * in Body send raw JSON :
-    {
-    "id":id_of_existing_topic,
-    }  
+    { <br />
+    "id":id_of_existing_topic, <br />
+    }  <br />
 
 * PATCH - /api/topic/update - to update specific topic
     * in Body send raw JSON :
-    {  
-    "name":"updated_name",
-    "description":"updated_description",
-    "category_id":new_but_existing_category_id,
-    "user_id":author_id_of_this_topic,
-    "topic_id":topic_id
-    }  
+    {  <br />
+    "name":"updated_name", <br />
+    "description":"updated_description", <br />
+    "category_id":new_but_existing_category_id, <br />
+    "user_id":author_id_of_this_topic, <br />
+    "topic_id":topic_id <br />
+    }  <br />
 
 * DELETE - /api/topic/delete - to delete specific topic
     * in Body send raw JSON :
-    {  
-    "id":topic_id,
-    "user_id":author_id_of_this_topic,
-    } 
+    {  <br />
+    "id":topic_id, <br />
+    "user_id":author_id_of_this_topic, <br />
+    }  <br />
 
 ### In case with categories : 
 
@@ -115,23 +115,23 @@
 
 * POST - /api/category - to add a new category
     * in Body send raw JSON :
-    {  
-    "name":"category_name",
-    "user_id":your_user_id,
-    }  
+    {  <br />
+    "name":"category_name", <br />
+    "user_id":your_user_id, <br />
+    }  <br />
 
 * GET - /api/category - to show specific category
     * in Body send raw JSON :
-    {  
-    "id":"existing_category_id"         
-    }  
+    {  <br />
+    "id":"existing_category_id"  <br />       
+    }  <br />
 
 * DELETE - /api/category/delete - to delete specific category
     * in Body send raw JSON :
-    {  
-    "id":existing_category_id, 
-    "user_id":author_id_of_this_category         
-    }  
+    {  <br />
+    "id":existing_category_id, <br />
+    "user_id":author_id_of_this_category  <br />       
+    }  <br />
 
 ### Tags feature have no api routes. 
 
