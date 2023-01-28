@@ -78,66 +78,67 @@
 * GET - /api/topics - to get all topics
 
 * POST - /api/topics/store - to store a new topic
-    * in Body send raw JSON :
-    {
-    "name":"your topic name",                      (string in quotes)
-    "description":"your topic description",        (string in quotes)
-    "category_id":category_id_which_exists_in_db,  (int without quotes)
-    "user_id":your_user_id                         (int without quotes)
-    }     
+    * in Body send raw JSON : <br />
+    { <br />
+    "name":"your topic name", <br />
+    "description":"your topic description", <br />
+    "category_id":category_id_which_exists_in_db, <br />
+    "user_id":your_user_id <br />
+    } <br />
 
 * GET - /api/topic - to get topic by id  
-    * in Body send raw JSON :
-    {
-    "id":id_of_existing_topic,                   (int without quotes)
-    }  
+    * in Body send raw JSON : <br />
+    { <br />
+    "id":id_of_existing_topic, <br />
+    }  <br />
 
 * PATCH - /api/topic/update - to update specific topic
-    * in Body send raw JSON :
-    {  
-    "name":"updated_name",                       (string in quotes)
-    "description":"updated_description",         (string in quotes)
-    "category_id":new_but_existing_category_id,  (int without quotes)
-    "user_id":author_id_of_this_topic,           (int without quotes)
-    "topic_id":topic_id                          (int without quotes)
-    }  
+    * in Body send raw JSON : <br />
+    {  <br />
+    "name":"updated_name", <br />
+    "description":"updated_description", <br />
+    "category_id":new_but_existing_category_id, <br />
+    "user_id":author_id_of_this_topic, <br />
+    "topic_id":topic_id <br />
+    } 
 
 * DELETE - /api/topic/delete - to delete specific topic
-    * in Body send raw JSON :
-    {  
-    "id":topic_id,                       (int without quotes)
-    "user_id":author_id_of_this_topic,   (int without quotes)
-    } 
+    * in Body send raw JSON : <br />
+    {  <br />
+    "id":topic_id, <br />
+    "user_id":author_id_of_this_topic, <br />
+    }
 
 ### In case with categories : 
 
 * GET - /api/categories - to get all categories
 
 * POST - /api/category - to add a new category
-    * in Body send raw JSON :
-    {  
-    "name":"category_name",             (string in quotes)
-    "user_id":your_user_id,             (int without quotes)
-    }  
+    * in Body send raw JSON : <br />
+    {  <br />
+    "name":"category_name", <br />
+    "user_id":your_user_id, <br />
+    }
 
 * GET - /api/category - to show specific category
-    * in Body send raw JSON :
-    {  
-    "id":"existing_category_id"      (int without quotes)         
-    }  
+    * in Body send raw JSON : <br />
+    {  <br />
+    "id":"existing_category_id" <br /> 
+    }
 
 * DELETE - /api/category/delete - to delete specific category
-    * in Body send raw JSON :
-    {  
-    "id":existing_category_id,               (int without quotes) 
-    "user_id":author_id_of_this_category     (int without quotes)         
-    }  
+    * in Body send raw JSON : <br />
+    {  <br />
+    "id":existing_category_id, <br />
+    "user_id":author_id_of_this_category <br />  
+    }
 
 ### Tags feature have no api routes. 
 
 ## Additional informations
 * What packages have been used :
   * Authorization with laravel Breeze
+  * Auth bearer token chec with laravel Sanctum
   * Dockerize with laravel Sail
   * CKE Editor in create/update topic pages : https://ckeditor.com/docs/ckeditor5/latest/index.html
 

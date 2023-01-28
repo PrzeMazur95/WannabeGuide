@@ -17,7 +17,8 @@ class CategoryControllerTest extends TestCase
      */
     public function if_we_could_add_new_category()
     {
-        $response = $this->postJson(
+
+        $response = $this->actingAs($this->authUser())->postJson(
             'api/category', [
                 'name'=>'test',
                 'user_id'=>User::factory()->create()->id
@@ -35,7 +36,7 @@ class CategoryControllerTest extends TestCase
      */
     public function if_we_could_return_all_categories()
     {
-        $response = $this->getJson('api/categories');
+        $response = $this->actingAs($this->authUser())->getJson('api/categories');
 
         $response->assertStatus(200)
             ->assertJsonStructure( [ 
