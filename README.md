@@ -143,3 +143,6 @@
   * CKE Editor in create/update topic pages : https://ckeditor.com/docs/ckeditor5/latest/index.html
 
 
+  # PHP version 8.1.7 
+
+
