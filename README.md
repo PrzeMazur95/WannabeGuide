@@ -25,6 +25,9 @@
     * ./vendor/bin/sail artisan migrate --seed
     * ./vendor/bin/sail artisan serve
 
+    ** If you get an error about an encryption key, type in terminal : 
+        - ./vendor/bin/sail artisan key:generate
+
 * Then in your browser go to 127.0.0.1:8000, you will see login form. By seeding db we have example admin user :
 
     * username: admin@example.com, password: password - use that credentals to login.
@@ -141,5 +144,8 @@
   * Auth bearer token chec with laravel Sanctum
   * Dockerize with laravel Sail
   * CKE Editor in create/update topic pages : https://ckeditor.com/docs/ckeditor5/latest/index.html
+
+
+  # PHP version 8.1.7 
 
 
